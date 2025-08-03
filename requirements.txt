@@ -1,0 +1,40 @@
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.21.0
+scipy>=1.9.0
+
+# Scientific computing
+h5py>=3.7.0
+netcdf4>=1.6.0
+xarray>=2022.6.0
+
+# Machine learning utilities
+einops>=0.6.0
+wandb>=0.13.0
+tensorboard>=2.10.0
+
+# Numerical libraries
+scikit-learn>=1.1.0
+pandas>=1.5.0
+
+# Parallel computing
+mpi4py>=3.1.0
+
+# Configuration and utilities
+omegaconf>=2.2.0
+hydra-core>=1.2.0
+tqdm>=4.64.0
+rich>=12.5.0
+
+# Data validation
+pydantic>=1.10.0
+
+# Testing (for CI/CD)
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Code quality
+black>=22.0.0
+isort>=5.10.0
+flake8>=5.0.0
