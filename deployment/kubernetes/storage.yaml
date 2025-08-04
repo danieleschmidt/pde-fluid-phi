@@ -1,0 +1,142 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pde-fluid-phi-data-pv
+  labels:
+    app: pde-fluid-phi
+    type: data
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: fast-ssd
+  hostPath:
+    path: /mnt/data/pde-fluid-phi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pde-fluid-phi-data-pvc
+  namespace: pde-fluid-phi
+  labels:
+    app: pde-fluid-phi
+    type: data
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: fast-ssd
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pde-fluid-phi-output-pv
+  labels:
+    app: pde-fluid-phi
+    type: output
+spec:
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  hostPath:
+    path: /mnt/outputs/pde-fluid-phi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pde-fluid-phi-output-pvc
+  namespace: pde-fluid-phi
+  labels:
+    app: pde-fluid-phi
+    type: output
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: standard
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pde-fluid-phi-config
+  namespace: pde-fluid-phi
+  labels:
+    app: pde-fluid-phi
+data:
+  training_config.yaml: |
+    name: "production_training"
+    description: "Production training configuration"
+    output_dir: "/outputs"
+    seed: 42
+    
+    model:
+      model_type: "rfno"
+      modes: [32, 32, 32]
+      width: 64
+      n_layers: 4
+      rational_order: [4, 4]
+      activation: "gelu"
+      
+    data:
+      data_dir: "/data"
+      reynolds_number: 100000
+      resolution: [128, 128, 128]
+      time_steps: 100
+      batch_size: 4
+      n_samples: 10000
+      forcing_type: "linear"
+      
+    training:
+      epochs: 200
+      learning_rate: 1e-3
+      weight_decay: 1e-4
+      stability_reg: 0.01
+      spectral_reg: 0.001
+      scheduler_type: "cosine"
+      warmup_epochs: 20
+      patience: 20
+      mixed_precision: true
+      checkpoint_freq: 10
+      
+    logging:
+      level: "INFO"
+      wandb: true
+      wandb_project: "pde-fluid-phi-production"
+      
+    system:
+      device: "auto"
+      num_workers: 8
+      pin_memory: true
+      
+  scheduled_training_config.yaml: |
+    name: "scheduled_training"
+    description: "Weekly scheduled training"
+    output_dir: "/outputs/scheduled"
+    seed: 42
+    
+    model:
+      model_type: "rfno"
+      modes: [16, 16, 16]
+      width: 32
+      n_layers: 2
+      
+    data:
+      data_dir: "/data"
+      reynolds_number: 50000
+      resolution: [64, 64, 64]
+      batch_size: 2
+      n_samples: 1000
+      
+    training:
+      epochs: 50
+      learning_rate: 1e-3
+      mixed_precision: true

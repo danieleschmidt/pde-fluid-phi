@@ -1,0 +1,156 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pde-fluid-phi-training
+  namespace: pde-fluid-phi
+  labels:
+    app: pde-fluid-phi
+    component: training
+    version: v0.1.0
+spec:
+  parallelism: 1
+  completions: 1
+  backoffLimit: 3
+  ttlSecondsAfterFinished: 86400  # Clean up after 24 hours
+  template:
+    metadata:
+      labels:
+        app: pde-fluid-phi
+        component: training
+    spec:
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: trainer
+        image: terragonlabs/pde-fluid-phi:latest
+        imagePullPolicy: Always
+        command:
+        - pde-fluid-phi
+        - train
+        - --config
+        - /config/training_config.yaml
+        - --data-dir
+        - /data
+        - --output-dir
+        - /outputs
+        resources:
+          requests:
+            cpu: 4
+            memory: 16Gi
+            nvidia.com/gpu: 1
+          limits:
+            cpu: 8
+            memory: 32Gi
+            nvidia.com/gpu: 1
+        env:
+        - name: CUDA_VISIBLE_DEVICES
+          value: "0"
+        - name: PYTHONPATH
+          value: "/app/src"
+        - name: WANDB_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: pde-fluid-phi-secrets
+              key: wandb-api-key
+        - name: NCCL_DEBUG
+          value: "INFO"
+        volumeMounts:
+        - name: data-volume
+          mountPath: /data
+          readOnly: true
+        - name: output-volume
+          mountPath: /outputs
+        - name: config-volume
+          mountPath: /config
+          readOnly: true
+        - name: shm-volume
+          mountPath: /dev/shm
+        livenessProbe:
+          exec:
+            command:
+            - python
+            - -c
+            - "import torch; print('Training alive')"
+          initialDelaySeconds: 60
+          periodSeconds: 300
+          timeoutSeconds: 30
+          failureThreshold: 3
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: pde-fluid-phi-data-pvc
+      - name: output-volume
+        persistentVolumeClaim:
+          claimName: pde-fluid-phi-output-pvc
+      - name: config-volume
+        configMap:
+          name: pde-fluid-phi-config
+      - name: shm-volume
+        emptyDir:
+          medium: Memory
+          sizeLimit: 2Gi
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+      nodeSelector:
+        accelerator: nvidia-tesla-v100
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pde-fluid-phi-scheduled-training
+  namespace: pde-fluid-phi
+spec:
+  schedule: "0 2 * * 0"  # Weekly on Sunday at 2 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: scheduled-trainer
+            image: terragonlabs/pde-fluid-phi:latest
+            command:
+            - pde-fluid-phi
+            - train
+            - --config
+            - /config/scheduled_training_config.yaml
+            resources:
+              requests:
+                cpu: 2
+                memory: 8Gi
+                nvidia.com/gpu: 1
+              limits:
+                cpu: 4
+                memory: 16Gi
+                nvidia.com/gpu: 1
+            volumeMounts:
+            - name: data-volume
+              mountPath: /data
+            - name: output-volume
+              mountPath: /outputs
+            - name: config-volume
+              mountPath: /config
+          volumes:
+          - name: data-volume
+            persistentVolumeClaim:
+              claimName: pde-fluid-phi-data-pvc
+          - name: output-volume
+            persistentVolumeClaim:
+              claimName: pde-fluid-phi-output-pvc
+          - name: config-volume
+            configMap:
+              name: pde-fluid-phi-config

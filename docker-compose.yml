@@ -1,0 +1,231 @@
+version: '3.8'
+
+services:
+  # CPU-only service for development
+  pde-fluid-phi-cpu:
+    build:
+      context: .
+      target: cpu
+    container_name: pde-fluid-phi-cpu
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./examples:/app/examples
+    environment:
+      - PYTHONPATH=/app/src
+    profiles:
+      - cpu
+      - dev
+
+  # GPU service for training
+  pde-fluid-phi-gpu:
+    build:
+      context: .
+      target: gpu
+    container_name: pde-fluid-phi-gpu
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./examples:/app/examples
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    environment:
+      - DISPLAY=${DISPLAY}
+      - PYTHONPATH=/app/src
+      - CUDA_VISIBLE_DEVICES=0
+    runtime: nvidia
+    profiles:
+      - gpu
+      - train
+
+  # Development environment with Jupyter
+  pde-fluid-phi-dev:
+    build:
+      context: .
+      target: development
+    container_name: pde-fluid-phi-dev
+    ports:
+      - "8888:8888"
+      - "6006:6006"  # TensorBoard
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+    environment:
+      - PYTHONPATH=/app/src
+      - JUPYTER_ENABLE_LAB=yes
+    command: >
+      bash -c "
+        jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password='' &
+        tensorboard --logdir=/app/outputs/logs --host=0.0.0.0 --port=6006 &
+        bash
+      "
+    profiles:
+      - development
+
+  # Distributed training coordinator
+  pde-fluid-phi-master:
+    build:
+      context: .
+      target: gpu
+    container_name: pde-fluid-phi-master
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+    environment:
+      - PYTHONPATH=/app/src
+      - WORLD_SIZE=2
+      - RANK=0
+      - MASTER_ADDR=pde-fluid-phi-master
+      - MASTER_PORT=29500
+    runtime: nvidia
+    networks:
+      - training-network
+    profiles:
+      - distributed
+
+  # Distributed training worker
+  pde-fluid-phi-worker:
+    build:
+      context: .
+      target: gpu
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+    environment:
+      - PYTHONPATH=/app/src
+      - WORLD_SIZE=2
+      - RANK=1
+      - MASTER_ADDR=pde-fluid-phi-master
+      - MASTER_PORT=29500
+    runtime: nvidia
+    networks:
+      - training-network
+    depends_on:
+      - pde-fluid-phi-master
+    profiles:
+      - distributed
+
+  # Data generation service
+  data-generator:
+    build:
+      context: .
+      target: cpu
+    container_name: pde-fluid-phi-data-gen
+    volumes:
+      - ./data:/app/data
+    command: >
+      pde-fluid-phi generate 
+      --reynolds-number 100000 
+      --resolution 128 128 128 
+      --n-samples 1000 
+      --output-dir /app/data/generated
+    profiles:
+      - datagen
+
+  # Benchmarking service
+  benchmark:
+    build:
+      context: .
+      target: gpu
+    container_name: pde-fluid-phi-benchmark
+    volumes:
+      - ./outputs:/app/outputs
+      - ./benchmarks:/app/benchmarks
+    environment:
+      - PYTHONPATH=/app/src
+      - CUDA_VISIBLE_DEVICES=0
+    runtime: nvidia
+    command: >
+      pde-fluid-phi benchmark 
+      --model-path /app/outputs/model.pt 
+      --test-case taylor-green 
+      --output-dir /app/benchmarks
+    profiles:
+      - benchmark
+
+  # Monitoring stack
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+    profiles:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    depends_on:
+      - prometheus
+    profiles:
+      - monitoring
+
+  # Redis for caching and job queues
+  redis:
+    image: redis:7-alpine
+    container_name: pde-fluid-phi-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    profiles:
+      - cache
+      - distributed
+
+  # PostgreSQL for metadata storage
+  postgres:
+    image: postgres:15-alpine
+    container_name: pde-fluid-phi-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=pde_fluid_phi
+      - POSTGRES_USER=pde_user
+      - POSTGRES_PASSWORD=pde_password
+    profiles:
+      - database
+
+  # MinIO for object storage
+  minio:
+    image: minio/minio:latest
+    container_name: pde-fluid-phi-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    command: server /data --console-address ":9001"
+    profiles:
+      - storage
+
+networks:
+  training-network:
+    driver: bridge
+
+volumes:
+  grafana-storage:
+  redis-data:
+  postgres-data:
+  minio-data:
