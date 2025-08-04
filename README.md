@@ -676,7 +676,7 @@ optimizer.enable_activation_recomputation(
 ```bibtex
 @article{pde_fluid_phi,
   title={PDE-Fluid-Φ: Rational-Fourier Neural Operators for Extreme Reynolds Number Flows},
-  author={Your Name},
+  author={Daniel Schmidt},
   journal={Journal of Computational Physics},
   year={2025},
   doi={10.1016/j.jcp.2025.xxxxx}
