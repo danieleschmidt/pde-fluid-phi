@@ -1,0 +1,201 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: pde-fluid-phi-metrics
+  labels:
+    app.kubernetes.io/name: pde-fluid-phi
+    app.kubernetes.io/component: monitoring
+    prometheus: kube-prometheus
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: pde-fluid-phi
+      app.kubernetes.io/component: api
+  endpoints:
+  - port: metrics
+    interval: 30s
+    path: /metrics
+    honorLabels: true
+    scrapeTimeout: 25s
+    metricRelabelings:
+    - sourceLabels: [__name__]
+      regex: '(go_|process_|python_).*'
+      action: drop
+    - sourceLabels: [__name__]
+      targetLabel: job
+      replacement: pde-fluid-phi
+  namespaceSelector:
+    matchNames:
+    - pde-fluid-phi-production
+    - pde-fluid-phi-staging
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: pde-fluid-phi-alerts
+  labels:
+    app.kubernetes.io/name: pde-fluid-phi
+    app.kubernetes.io/component: monitoring
+    prometheus: kube-prometheus
+spec:
+  groups:
+  - name: pde-fluid-phi.rules
+    interval: 30s
+    rules:
+    # High-level service availability
+    - alert: PDEFluidPhiServiceDown
+      expr: up{job="pde-fluid-phi"} == 0
+      for: 2m
+      labels:
+        severity: critical
+        service: pde-fluid-phi
+      annotations:
+        summary: "PDE-Fluid-Φ service is down"
+        description: "PDE-Fluid-Φ service has been down for more than 2 minutes on {{ $labels.instance }}"
+        runbook_url: "https://runbooks.terragonlabs.com/pde-fluid-phi/service-down"
+    
+    # High error rate
+    - alert: PDEFluidPhiHighErrorRate
+      expr: |
+        rate(http_requests_total{job="pde-fluid-phi",code=~"5.."}[5m]) / 
+        rate(http_requests_total{job="pde-fluid-phi"}[5m]) > 0.1
+      for: 5m
+      labels:
+        severity: critical
+        service: pde-fluid-phi
+      annotations:
+        summary: "High error rate detected"
+        description: "Error rate is {{ $value | humanizePercentage }} for {{ $labels.instance }}"
+        runbook_url: "https://runbooks.terragonlabs.com/pde-fluid-phi/high-error-rate"
+    
+    # High response time
+    - alert: PDEFluidPhiHighLatency
+      expr: |
+        histogram_quantile(0.95, 
+          rate(http_request_duration_seconds_bucket{job="pde-fluid-phi"}[5m])
+        ) > 2.0
+      for: 5m
+      labels:
+        severity: warning
+        service: pde-fluid-phi
+      annotations:
+        summary: "High latency detected"
+        description: "95th percentile latency is {{ $value }}s for {{ $labels.instance }}"
+        runbook_url: "https://runbooks.terragonlabs.com/pde-fluid-phi/high-latency"
+    
+    # Memory usage
+    - alert: PDEFluidPhiHighMemoryUsage
+      expr: |
+        (process_resident_memory_bytes{job="pde-fluid-phi"} / 
+         container_spec_memory_limit_bytes{container="pde-fluid-phi"}) > 0.9
+      for: 10m
+      labels:
+        severity: warning
+        service: pde-fluid-phi
+      annotations:
+        summary: "High memory usage"
+        description: "Memory usage is {{ $value | humanizePercentage }} for {{ $labels.instance }}"
+        runbook_url: "https://runbooks.terragonlabs.com/pde-fluid-phi/high-memory"
+    
+    # GPU utilization (if GPU nodes)
+    - alert: PDEFluidPhiLowGPUUtilization
+      expr: |
+        avg_over_time(DCGM_FI_DEV_GPU_UTIL{job="dcgm-exporter",Hostname=~".*gpu.*"}[10m]) < 20
+      for: 15m
+      labels:
+        severity: warning
+        service: pde-fluid-phi
+      annotations:
+        summary: "Low GPU utilization"
+        description: "GPU utilization is {{ $value }}% on {{ $labels.Hostname }}"
+        runbook_url: "https://runbooks.terragonlabs.com/pde-fluid-phi/low-gpu-utilization"
+    
+    # Model inference performance
+    - alert: PDEFluidPhiSlowInference
+      expr: |
+        histogram_quantile(0.95,
+          rate(pde_fluid_phi_inference_duration_seconds_bucket[5m])
+        ) > 10.0
+      for: 5m
+      labels:
+        severity: warning
+        service: pde-fluid-phi
+      annotations:
+        summary: "Slow model inference"
+        description: "95th percentile inference time is {{ $value }}s"
+        runbook_url: "https://runbooks.terragonlabs.com/pde-fluid-phi/slow-inference"
+    
+    # Training job alerts
+    - alert: PDEFluidPhiTrainingJobFailed
+      expr: |
+        increase(pde_fluid_phi_training_jobs_failed_total[5m]) > 0
+      for: 1m
+      labels:
+        severity: critical
+        service: pde-fluid-phi
+      annotations:
+        summary: "Training job failed"
+        description: "{{ $value }} training job(s) have failed in the last 5 minutes"
+        runbook_url: "https://runbooks.terragonlabs.com/pde-fluid-phi/training-failed"
+    
+    # Data quality alerts
+    - alert: PDEFluidPhiDataQualityIssue
+      expr: |
+        pde_fluid_phi_data_validation_errors_total > 10
+      for: 5m
+      labels:
+        severity: warning
+        service: pde-fluid-phi
+      annotations:
+        summary: "Data quality issues detected"
+        description: "{{ $value }} data validation errors detected"
+        runbook_url: "https://runbooks.terragonlabs.com/pde-fluid-phi/data-quality"
+    
+    # Disk space
+    - alert: PDEFluidPhiLowDiskSpace
+      expr: |
+        (node_filesystem_avail_bytes{mountpoint="/app/data"} /
+         node_filesystem_size_bytes{mountpoint="/app/data"}) < 0.1
+      for: 5m
+      labels:
+        severity: critical
+        service: pde-fluid-phi
+      annotations:
+        summary: "Low disk space"
+        description: "Disk space is {{ $value | humanizePercentage }} available on {{ $labels.instance }}"
+        runbook_url: "https://runbooks.terragonlabs.com/pde-fluid-phi/low-disk-space"
+---
+# Custom metrics for neural operator specific monitoring
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pde-fluid-phi-prometheus-config
+  labels:
+    app.kubernetes.io/name: pde-fluid-phi
+    app.kubernetes.io/component: monitoring
+data:
+  additional_scrape_configs.yaml: |
+    - job_name: 'pde-fluid-phi-custom-metrics'
+      static_configs:
+      - targets: ['pde-fluid-phi-service:8000']
+      metrics_path: '/metrics'
+      scrape_interval: 30s
+      scrape_timeout: 25s
+      honor_labels: true
+      
+      # Relabel configurations for custom metrics
+      metric_relabel_configs:
+      # Keep only application-specific metrics
+      - source_labels: [__name__]
+        regex: 'pde_fluid_phi_.*'
+        action: keep
+      
+      # Add environment labels
+      - source_labels: [__name__]
+        target_label: environment
+        replacement: 'production'
+      
+      # Add service labels
+      - source_labels: [__name__]
+        target_label: service
+        replacement: 'pde-fluid-phi'

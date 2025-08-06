@@ -1,0 +1,32 @@
+apiVersion: v2
+name: pde-fluid-phi
+description: A Helm chart for PDE-Fluid-Φ Neural Operators
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - neural-operators
+  - computational-fluid-dynamics
+  - machine-learning
+  - scientific-computing
+home: https://github.com/terragonlabs/pde-fluid-phi
+sources:
+  - https://github.com/terragonlabs/pde-fluid-phi
+maintainers:
+  - name: Terragon Labs
+    email: research@terragonlabs.com
+dependencies:
+  - name: prometheus
+    version: "~15.0.0"
+    repository: https://prometheus-community.github.io/helm-charts
+    condition: monitoring.prometheus.enabled
+  - name: grafana
+    version: "~6.0.0"
+    repository: https://grafana.github.io/helm-charts
+    condition: monitoring.grafana.enabled
+  - name: redis
+    version: "~17.0.0"
+    repository: https://charts.bitnami.com/bitnami
+    condition: cache.enabled
+annotations:
+  category: Scientific Computing

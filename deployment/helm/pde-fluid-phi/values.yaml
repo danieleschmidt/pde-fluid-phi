@@ -1,0 +1,295 @@
+# Default values for pde-fluid-phi
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+## Global configuration
+global:
+  imageRegistry: ""
+  imagePullSecrets: []
+  storageClass: ""
+
+## Image configuration
+image:
+  registry: docker.io
+  repository: terragonlabs/pde-fluid-phi
+  tag: "latest"
+  pullPolicy: Always
+  debug: false
+
+## Service Account
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+## Pod Security Context
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+## Security Context
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  runAsNonRoot: true
+  runAsUser: 1000
+  capabilities:
+    drop:
+    - ALL
+
+## Training Job Configuration
+training:
+  enabled: true
+  
+  ## Job specifications
+  job:
+    backoffLimit: 3
+    ttlSecondsAfterFinished: 86400
+    parallelism: 1
+    completions: 1
+    
+  ## Resource configuration
+  resources:
+    requests:
+      cpu: 4
+      memory: 16Gi
+      nvidia.com/gpu: 1
+    limits:
+      cpu: 8
+      memory: 32Gi
+      nvidia.com/gpu: 1
+      
+  ## Node selection
+  nodeSelector:
+    accelerator: nvidia-tesla-v100
+    
+  tolerations:
+    - key: nvidia.com/gpu
+      operator: Exists
+      effect: NoSchedule
+      
+  affinity: {}
+  
+  ## Configuration
+  config:
+    name: "helm-training"
+    model:
+      model_type: "rfno"
+      modes: [32, 32, 32]
+      width: 64
+      n_layers: 4
+    data:
+      reynolds_number: 100000
+      resolution: [128, 128, 128]
+      batch_size: 4
+    training:
+      epochs: 100
+      learning_rate: 1e-3
+      mixed_precision: true
+
+## Scheduled Training (CronJob)
+scheduledTraining:
+  enabled: false
+  schedule: "0 2 * * 0"  # Weekly on Sunday at 2 AM
+  
+  resources:
+    requests:
+      cpu: 2
+      memory: 8Gi
+      nvidia.com/gpu: 1
+    limits:
+      cpu: 4
+      memory: 16Gi
+      nvidia.com/gpu: 1
+
+## Data Generation Job
+dataGeneration:
+  enabled: false
+  
+  config:
+    reynolds_number: 100000
+    resolution: [128, 128, 128]
+    n_samples: 1000
+    
+  resources:
+    requests:
+      cpu: 2
+      memory: 8Gi
+    limits:
+      cpu: 4
+      memory: 16Gi
+
+## Benchmarking Job
+benchmark:
+  enabled: false
+  
+  testCases:
+    - taylor-green
+    - hit
+    
+  resources:
+    requests:
+      cpu: 2
+      memory: 8Gi
+      nvidia.com/gpu: 1
+    limits:
+      cpu: 4
+      memory: 16Gi
+      nvidia.com/gpu: 1
+
+## Storage Configuration
+storage:
+  data:
+    enabled: true
+    size: 1Ti
+    storageClass: "fast-ssd"
+    accessModes:
+      - ReadWriteMany
+    hostPath: /mnt/data/pde-fluid-phi
+    
+  output:
+    enabled: true
+    size: 100Gi
+    storageClass: "standard"
+    accessModes:
+      - ReadWriteMany
+    hostPath: /mnt/outputs/pde-fluid-phi
+
+## Secrets Configuration
+secrets:
+  wandb:
+    apiKey: ""  # Set this value or use external secrets
+  
+  # External secrets operator integration
+  externalSecrets:
+    enabled: false
+    secretStore: ""
+
+## Monitoring Configuration
+monitoring:
+  enabled: true
+  
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      interval: 30s
+      
+  grafana:
+    enabled: true
+    dashboards:
+      enabled: true
+      
+  alerts:
+    enabled: true
+    rules:
+      - name: training-job-failed
+        expr: increase(kube_job_status_failed[5m]) > 0
+        severity: critical
+      - name: gpu-utilization-low
+        expr: nvidia_gpu_utilization_gpu < 50
+        severity: warning
+
+## Networking Configuration
+networking:
+  networkPolicy:
+    enabled: true
+    
+  ingress:
+    enabled: false
+    className: "nginx"
+    annotations: {}
+    hosts: []
+    tls: []
+
+## Cache Configuration (Redis)
+cache:
+  enabled: false
+  
+  redis:
+    auth:
+      enabled: false
+    master:
+      persistence:
+        enabled: true
+        size: 8Gi
+
+## Development Tools
+development:
+  jupyter:
+    enabled: false
+    port: 8888
+    resources:
+      requests:
+        cpu: 1
+        memory: 2Gi
+      limits:
+        cpu: 2
+        memory: 4Gi
+        
+  tensorboard:
+    enabled: false
+    port: 6006
+
+## Autoscaling (HPA)
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+## Pod Disruption Budget
+podDisruptionBudget:
+  enabled: false
+  minAvailable: 1
+
+## Environment Variables
+env:
+  - name: PYTHONPATH
+    value: "/app/src"
+  - name: CUDA_VISIBLE_DEVICES
+    value: "0"
+  - name: NCCL_DEBUG
+    value: "INFO"
+
+## Extra environment variables from secrets/configmaps
+envFrom: []
+
+## Extra volumes
+extraVolumes: []
+
+## Extra volume mounts
+extraVolumeMounts: []
+
+## Init containers
+initContainers: []
+
+## Sidecar containers
+sidecars: []
+
+## Pod annotations
+podAnnotations: {}
+
+## Pod labels
+podLabels: {}
+
+## Priority class
+priorityClassName: ""
+
+## DNS configuration
+dnsPolicy: ClusterFirst
+dnsConfig: {}
+
+## Termination grace period
+terminationGracePeriodSeconds: 30
+
+## Host network
+hostNetwork: false
+
+## Host PID
+hostPID: false
+
+## Share process namespace
+shareProcessNamespace: false
