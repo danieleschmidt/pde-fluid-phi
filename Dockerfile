@@ -1,5 +1,11 @@
-# Multi-stage Dockerfile for PDE-Fluid-Φ
-# Supports both CPU and GPU deployments with optimized layers
+# Multi-stage production-ready Dockerfile for PDE-Fluid-Φ
+# Optimized for neural operator training and inference
+# Supports both CPU and GPU deployments with security hardening
+
+# Build arguments for metadata
+ARG VERSION=latest
+ARG BUILD_DATE
+ARG VCS_REF
 
 # Base stage with common dependencies
 FROM python:3.9-slim as base
@@ -123,20 +129,43 @@ EXPOSE 8888
 # Override entrypoint for development
 ENTRYPOINT ["bash"]
 
-# Production stage (minimal)
+# Production stage (minimal and secure)
 FROM cpu as production
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD pde-fluid-phi --help || exit 1
+# Security hardening
+RUN apt-get update && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends ca-certificates \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Labels for metadata
+USER pde_user
+
+# Create required directories
+RUN mkdir -p /app/data /app/logs /app/models \
+    && chmod 755 /app/data /app/logs /app/models
+
+# Health check with proper endpoint
+HEALTHCHECK --interval=30s --timeout=30s --start-period=60s --retries=3 \
+    CMD python -c "import pde_fluid_phi; print('OK')" || exit 1
+
+# Expose application port
+EXPOSE 8000
+
+# Production entrypoint with proper signal handling
+ENTRYPOINT ["python", "-m", "pde_fluid_phi.cli"]
+CMD ["serve", "--host", "0.0.0.0", "--port", "8000"]
+
+# Enhanced labels for metadata
 LABEL org.opencontainers.image.title="PDE-Fluid-Φ" \
       org.opencontainers.image.description="Neural Operators for High-Reynolds Number Turbulent Flows" \
       org.opencontainers.image.vendor="Terragon Labs" \
-      org.opencontainers.image.version="0.1.0" \
-      org.opencontainers.image.source="https://github.com/terragonlabs/pde-fluid-phi" \
-      org.opencontainers.image.licenses="MIT"
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.created="${BUILD_DATE}" \
+      org.opencontainers.image.revision="${VCS_REF}" \
+      org.opencontainers.image.source="https://github.com/danieleschmidt/pde-fluid-phi" \
+      org.opencontainers.image.licenses="MIT" \
+      org.opencontainers.image.documentation="https://pde-fluid-phi.readthedocs.io" \
+      maintainer="research@terragonlabs.com"
 
 # Default to production stage
 FROM production

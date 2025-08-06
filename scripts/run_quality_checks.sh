@@ -101,20 +101,38 @@ check_success "mypy type checking"
 # 5. Security Scanning
 print_section "Security Scanning"
 
-echo "Running bandit security scan..."
-bandit -r src/ \
-    -f json \
-    -o reports/bandit_report.json \
-    -ll \
-    --severity-level medium
-check_success "bandit security scan"
+echo "Running comprehensive security scan..."
+if [[ -f "scripts/security_scan.py" ]]; then
+    python scripts/security_scan.py \
+        --output reports/security_report.json \
+        --fail-on-high
+    check_success "Comprehensive security scan" "critical"
+else
+    echo "Security scan script not found, running basic checks..."
+    
+    echo "Running bandit security scan..."
+    if command -v bandit &> /dev/null; then
+        bandit -r src/ \
+            -f json \
+            -o reports/bandit_report.json \
+            -ll \
+            --severity-level medium
+        check_success "bandit security scan"
+    else
+        echo "bandit not available, skipping"
+    fi
 
-echo "Running safety vulnerability check..."
-safety check \
-    --json \
-    --output reports/safety_report.json \
-    --continue-on-error
-check_success "safety vulnerability check"
+    echo "Running safety vulnerability check..."
+    if command -v safety &> /dev/null; then
+        safety check \
+            --json \
+            --output reports/safety_report.json \
+            --continue-on-error
+        check_success "safety vulnerability check"
+    else
+        echo "safety not available, skipping"
+    fi
+fi
 
 # 6. Unit Tests
 print_section "Unit Tests"
@@ -150,16 +168,27 @@ fi
 # 8. Performance Tests
 print_section "Performance Tests"
 
-if command -v pytest-benchmark &> /dev/null; then
-    echo "Running performance benchmarks..."
-    pytest tests/ \
-        -m benchmark \
-        --benchmark-json=reports/benchmark_report.json \
-        --benchmark-html=reports/benchmark_report.html \
-        --benchmark-only
+echo "Running performance benchmarks..."
+if [[ -f "scripts/performance_benchmark.py" ]]; then
+    python scripts/performance_benchmark.py \
+        --quick \
+        --output reports/benchmark_results.json \
+        --format json
     check_success "Performance benchmarks"
 else
-    echo "pytest-benchmark not available, skipping..."
+    echo "Performance benchmark script not found"
+    
+    if command -v pytest-benchmark &> /dev/null; then
+        echo "Running pytest benchmarks..."
+        pytest tests/ \
+            -m benchmark \
+            --benchmark-json=reports/benchmark_report.json \
+            --benchmark-html=reports/benchmark_report.html \
+            --benchmark-only
+        check_success "Performance benchmarks"
+    else
+        echo "No benchmark tools available, skipping..."
+    fi
 fi
 
 # 9. Documentation Tests
