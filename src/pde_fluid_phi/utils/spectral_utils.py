@@ -299,3 +299,184 @@ def dealiasing_filter(
         x_ft[..., :kx_cutoff, :ky_cutoff, :kz_cutoff]
     
     return x_ft_dealiased
+
+
+def compute_vorticity(
+    velocity: torch.Tensor,
+    spectral: bool = True
+) -> torch.Tensor:
+    """
+    Compute vorticity (curl) of velocity field: ω = ∇ × u
+    
+    Args:
+        velocity: Velocity field [batch, 3, height, width, depth] (u, v, w components)
+        spectral: If True, use spectral derivatives for higher accuracy
+        
+    Returns:
+        Vorticity field [batch, 3, height, width, depth] (ωx, ωy, ωz components)
+    """
+    if velocity.shape[1] != 3:
+        raise ValueError(f"Expected 3 velocity components, got {velocity.shape[1]}")
+    
+    u, v, w = velocity[:, 0], velocity[:, 1], velocity[:, 2]
+    
+    if spectral:
+        # Use spectral derivatives for higher accuracy
+        # ωx = ∂w/∂y - ∂v/∂z
+        dwdy = spectral_derivative(w, dim=-2, order=1)
+        dvdz = spectral_derivative(v, dim=-1, order=1)
+        omega_x = dwdy - dvdz
+        
+        # ωy = ∂u/∂z - ∂w/∂x  
+        dudz = spectral_derivative(u, dim=-1, order=1)
+        dwdx = spectral_derivative(w, dim=-3, order=1)
+        omega_y = dudz - dwdx
+        
+        # ωz = ∂v/∂x - ∂u/∂y
+        dvdx = spectral_derivative(v, dim=-3, order=1)
+        dudy = spectral_derivative(u, dim=-2, order=1)
+        omega_z = dvdx - dudy
+        
+    else:
+        # Use finite differences (lower accuracy but faster)
+        # ωx = ∂w/∂y - ∂v/∂z
+        dwdy = torch.gradient(w, dim=-2)[0]
+        dvdz = torch.gradient(v, dim=-1)[0]
+        omega_x = dwdy - dvdz
+        
+        # ωy = ∂u/∂z - ∂w/∂x
+        dudz = torch.gradient(u, dim=-1)[0]
+        dwdx = torch.gradient(w, dim=-3)[0]
+        omega_y = dudz - dwdx
+        
+        # ωz = ∂v/∂x - ∂u/∂y
+        dvdx = torch.gradient(v, dim=-3)[0]
+        dudy = torch.gradient(u, dim=-2)[0]
+        omega_z = dvdx - dudy
+    
+    # Stack vorticity components
+    vorticity = torch.stack([omega_x, omega_y, omega_z], dim=1)
+    
+    return vorticity
+
+
+def compute_divergence(
+    velocity: torch.Tensor,
+    spectral: bool = True
+) -> torch.Tensor:
+    """
+    Compute divergence of velocity field: ∇ · u = ∂u/∂x + ∂v/∂y + ∂w/∂z
+    
+    Args:
+        velocity: Velocity field [batch, 3, height, width, depth] (u, v, w components)
+        spectral: If True, use spectral derivatives for higher accuracy
+        
+    Returns:
+        Divergence field [batch, height, width, depth]
+    """
+    if velocity.shape[1] != 3:
+        raise ValueError(f"Expected 3 velocity components, got {velocity.shape[1]}")
+    
+    u, v, w = velocity[:, 0], velocity[:, 1], velocity[:, 2]
+    
+    if spectral:
+        # Use spectral derivatives for higher accuracy
+        dudx = spectral_derivative(u, dim=-3, order=1)
+        dvdy = spectral_derivative(v, dim=-2, order=1)
+        dwdz = spectral_derivative(w, dim=-1, order=1)
+    else:
+        # Use finite differences
+        dudx = torch.gradient(u, dim=-3)[0]
+        dvdy = torch.gradient(v, dim=-2)[0]
+        dwdz = torch.gradient(w, dim=-1)[0]
+    
+    # Compute divergence
+    divergence = dudx + dvdy + dwdz
+    
+    return divergence
+
+
+def compute_vorticity_magnitude(
+    velocity: torch.Tensor,
+    spectral: bool = True
+) -> torch.Tensor:
+    """
+    Compute magnitude of vorticity: |ω| = √(ωx² + ωy² + ωz²)
+    
+    Args:
+        velocity: Velocity field [batch, 3, height, width, depth]
+        spectral: If True, use spectral derivatives
+        
+    Returns:
+        Vorticity magnitude [batch, height, width, depth]
+    """
+    vorticity = compute_vorticity(velocity, spectral=spectral)
+    vorticity_magnitude = torch.sqrt(torch.sum(vorticity**2, dim=1))
+    
+    return vorticity_magnitude
+
+
+def compute_q_criterion(
+    velocity: torch.Tensor,
+    spectral: bool = True
+) -> torch.Tensor:
+    """
+    Compute Q-criterion for vortex identification: Q = 0.5 * (Ω² - S²)
+    where Ω is vorticity magnitude and S is strain rate magnitude.
+    
+    Args:
+        velocity: Velocity field [batch, 3, height, width, depth]
+        spectral: If True, use spectral derivatives
+        
+    Returns:
+        Q-criterion field [batch, height, width, depth]
+    """
+    # Compute vorticity magnitude squared
+    vorticity = compute_vorticity(velocity, spectral=spectral)
+    omega_squared = torch.sum(vorticity**2, dim=1)
+    
+    # Compute strain rate tensor and its magnitude squared
+    u, v, w = velocity[:, 0], velocity[:, 1], velocity[:, 2]
+    
+    if spectral:
+        # Compute velocity gradients using spectral derivatives
+        dudx = spectral_derivative(u, dim=-3, order=1)
+        dudy = spectral_derivative(u, dim=-2, order=1)
+        dudz = spectral_derivative(u, dim=-1, order=1)
+        
+        dvdx = spectral_derivative(v, dim=-3, order=1)
+        dvdy = spectral_derivative(v, dim=-2, order=1)
+        dvdz = spectral_derivative(v, dim=-1, order=1)
+        
+        dwdx = spectral_derivative(w, dim=-3, order=1)
+        dwdy = spectral_derivative(w, dim=-2, order=1)
+        dwdz = spectral_derivative(w, dim=-1, order=1)
+    else:
+        # Use finite differences
+        dudx = torch.gradient(u, dim=-3)[0]
+        dudy = torch.gradient(u, dim=-2)[0]
+        dudz = torch.gradient(u, dim=-1)[0]
+        
+        dvdx = torch.gradient(v, dim=-3)[0]
+        dvdy = torch.gradient(v, dim=-2)[0]
+        dvdz = torch.gradient(v, dim=-1)[0]
+        
+        dwdx = torch.gradient(w, dim=-3)[0]
+        dwdy = torch.gradient(w, dim=-2)[0]
+        dwdz = torch.gradient(w, dim=-1)[0]
+    
+    # Strain rate tensor elements: Sij = 0.5 * (∂ui/∂xj + ∂uj/∂xi)
+    S11 = dudx
+    S22 = dvdy
+    S33 = dwdz
+    S12 = 0.5 * (dudy + dvdx)
+    S13 = 0.5 * (dudz + dwdx)
+    S23 = 0.5 * (dvdz + dwdy)
+    
+    # Strain rate magnitude squared: 2 * Sij * Sij
+    strain_squared = 2 * (S11**2 + S22**2 + S33**2 + 2*(S12**2 + S13**2 + S23**2))
+    
+    # Q-criterion: Q = 0.5 * (|ω|² - |S|²)
+    q_criterion = 0.5 * (omega_squared - strain_squared)
+    
+    return q_criterion
