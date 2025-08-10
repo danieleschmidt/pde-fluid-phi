@@ -4,18 +4,19 @@ Training command implementation for PDE-Fluid-Φ CLI.
 
 import logging
 import torch
-import torch.optim as optim
 from pathlib import Path
 from typing import Optional, Any, Dict
-import wandb
-from tqdm import tqdm
+
+try:
+    import wandb
+    WANDB_AVAILABLE = True
+except ImportError:
+    WANDB_AVAILABLE = False
 
 from ..models import FNO3D, RationalFNO, MultiScaleFNO
 from ..data.turbulence_dataset import TurbulenceDataset
 from ..training.stability_trainer import StabilityTrainer
-from ..training.distributed import DistributedTrainer
 from ..utils.device_utils import get_device
-from ..utils.error_handling import handle_training_errors
 
 
 logger = logging.getLogger(__name__)
@@ -66,104 +67,37 @@ def train_command(args: Any, config: Optional[Dict] = None) -> int:
             pin_memory=True
         )
         
-        # Setup optimizer
-        optimizer = optim.AdamW(
-            model.parameters(),
-            lr=args.learning_rate,
-            weight_decay=args.weight_decay
-        )
-        
-        # Setup scheduler
-        scheduler = optim.lr_scheduler.CosineAnnealingLR(
-            optimizer,
-            T_max=args.epochs,
-            eta_min=1e-6
-        )
+        # Note: StabilityTrainer creates its own optimizer and scheduler
         
         # Setup trainer
-        if torch.cuda.device_count() > 1:
-            trainer = DistributedTrainer(
-                model=model,
-                optimizer=optimizer,
-                scheduler=scheduler,
-                mixed_precision=args.mixed_precision
-            )
-        else:
-            trainer = StabilityTrainer(
-                model=model,
-                optimizer=optimizer,
-                scheduler=scheduler,
-                mixed_precision=args.mixed_precision
-            )
-        
-        # Setup logging
-        if args.wandb:
-            wandb.init(
-                project='pde-fluid-phi',
-                name=f'{args.model_type}_re{args.reynolds_number}',
-                config=vars(args)
-            )
-        
-        # Training loop
-        best_val_loss = float('inf')
-        
-        for epoch in range(args.epochs):
-            # Training
-            train_loss = trainer.train_epoch(train_loader, device)
-            
-            # Validation
-            val_loss = trainer.validate_epoch(val_loader, device)
-            
-            # Learning rate step
-            scheduler.step()
-            
-            # Logging
-            logger.info(
-                f"Epoch {epoch+1}/{args.epochs}: "
-                f"Train Loss: {train_loss:.6f}, "
-                f"Val Loss: {val_loss:.6f}, "
-                f"LR: {scheduler.get_last_lr()[0]:.2e}"
-            )
-            
-            if args.wandb:
-                wandb.log({
-                    'epoch': epoch + 1,
-                    'train_loss': train_loss,
-                    'val_loss': val_loss,
-                    'learning_rate': scheduler.get_last_lr()[0]
-                })
-            
-            # Save checkpoint
-            if (epoch + 1) % args.checkpoint_freq == 0:
-                checkpoint_path = output_dir / f'checkpoint_epoch_{epoch+1}.pt'
-                _save_checkpoint(
-                    model, optimizer, scheduler, epoch, train_loss, val_loss, checkpoint_path
-                )
-                logger.info(f"Saved checkpoint: {checkpoint_path}")
-            
-            # Save best model
-            if val_loss < best_val_loss:
-                best_val_loss = val_loss
-                best_model_path = output_dir / 'best_model.pt'
-                _save_checkpoint(
-                    model, optimizer, scheduler, epoch, train_loss, val_loss, best_model_path
-                )
-                logger.info(f"New best model saved: {best_model_path}")
-        
-        # Save final model
-        final_model_path = output_dir / 'final_model.pt'
-        _save_checkpoint(
-            model, optimizer, scheduler, args.epochs-1, train_loss, val_loss, final_model_path
+        trainer = StabilityTrainer(
+            model=model,
+            learning_rate=args.learning_rate,
+            weight_decay=args.weight_decay,
+            use_mixed_precision=args.mixed_precision,
+            checkpoint_dir=str(output_dir),
+            log_wandb=args.wandb
         )
         
-        if args.wandb:
-            wandb.finish()
+        # Setup logging (handled by StabilityTrainer)
+        
+        # Train using the StabilityTrainer
+        history = trainer.fit(
+            train_loader=train_loader,
+            val_loader=val_loader,
+            epochs=args.epochs,
+            verbose=True
+        )
         
         logger.info("Training completed successfully!")
+        logger.info(f"Training history: {history}")
         return 0
         
     except Exception as e:
-        return handle_training_errors(e, logger)
+        logger.error(f"Training failed with error: {e}")
+        if hasattr(args, 'verbose') and args.verbose:
+            logger.exception("Full traceback:")
+        return 1
 
 
 def _create_model(args: Any, config: Optional[Dict] = None) -> torch.nn.Module:
@@ -191,11 +125,15 @@ def _create_model(args: Any, config: Optional[Dict] = None) -> torch.nn.Module:
 
 def _create_dataset(args: Any, config: Optional[Dict] = None, split: str = 'train') -> TurbulenceDataset:
     """Create dataset based on arguments."""
+    n_samples = 800 if split == 'train' else 200  # Default split
+    
     dataset_kwargs = {
-        'data_dir': args.data_dir,
         'reynolds_number': args.reynolds_number,
         'resolution': tuple(args.resolution),
-        'split': split
+        'n_samples': n_samples,
+        'data_dir': args.data_dir,
+        'generate_on_demand': True,  # Generate data on-the-fly for demo
+        'cache_data': True
     }
     
     if config and 'data' in config:

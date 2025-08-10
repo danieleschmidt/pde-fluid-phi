@@ -11,53 +11,7 @@ from typing import Tuple, Optional
 from einops import rearrange
 import numpy as np
 
-
-class SpectralConv3D(nn.Module):
-    """3D spectral convolution layer."""
-    
-    def __init__(self, in_channels: int, out_channels: int, modes: Tuple[int, int, int]):
-        super().__init__()
-        self.in_channels = in_channels
-        self.out_channels = out_channels
-        self.modes = modes  # Number of Fourier modes to keep
-        
-        # Initialize Fourier weights
-        self.scale = 1 / (in_channels * out_channels)
-        self.weights = nn.ParameterList([
-            nn.Parameter(self.scale * torch.rand(in_channels, out_channels, 
-                                               modes[0], modes[1], modes[2]//2+1, 
-                                               dtype=torch.cfloat))
-        ])
-    
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        Apply spectral convolution.
-        
-        Args:
-            x: Input tensor [batch, channels, height, width, depth]
-            
-        Returns:
-            Output tensor with same spatial dimensions
-        """
-        batch_size = x.shape[0]
-        
-        # Fourier transform
-        x_ft = torch.fft.rfftn(x, dim=[-3, -2, -1])
-        
-        # Multiply relevant Fourier modes
-        out_ft = torch.zeros(batch_size, self.out_channels, *x.shape[-3:], 
-                           dtype=torch.cfloat, device=x.device)
-        
-        # Extract modes up to the limit
-        modes_x, modes_y, modes_z = self.modes
-        out_ft[:, :, :modes_x, :modes_y, :modes_z//2+1] = \
-            torch.einsum("bixyz,ioxyz->boxyz", 
-                        x_ft[:, :, :modes_x, :modes_y, :modes_z//2+1], 
-                        self.weights[0])
-        
-        # Inverse Fourier transform
-        x = torch.fft.irfftn(out_ft, s=x.shape[-3:], dim=[-3, -2, -1])
-        return x
+from ..operators.spectral_layers import SpectralConv3D
 
 
 class FNO3D(nn.Module):

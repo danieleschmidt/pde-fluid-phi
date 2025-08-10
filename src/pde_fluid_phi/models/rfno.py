@@ -7,6 +7,7 @@ for robust turbulence modeling.
 
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from typing import Tuple, Optional, Dict, Any
 from einops import rearrange
 
