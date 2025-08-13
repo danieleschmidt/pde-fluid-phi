@@ -1,0 +1,279 @@
+version: '3.8'
+
+services:
+  # Main PDE-Fluid-Φ application
+  pde-fluid-phi:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+      target: production
+    image: pde-fluid-phi:latest
+    container_name: pde-fluid-phi-app
+    restart: unless-stopped
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4'
+        reservations:
+          memory: 2G
+          cpus: '1'
+    
+    # Environment configuration
+    environment:
+      - PDE_FLUID_PHI_ENV=production
+      - PDE_FLUID_PHI_LOG_LEVEL=INFO
+      - PDE_FLUID_PHI_WORKERS=4
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgresql://pde_user:${DB_PASSWORD}@postgres:5432/pde_fluid_phi
+    
+    # Volume mounts
+    volumes:
+      - pde_data:/app/data
+      - pde_models:/app/models
+      - pde_logs:/app/logs
+      - ./config:/app/config:ro
+    
+    # Network configuration
+    ports:
+      - "8000:8000"
+    
+    # Dependencies
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    
+    networks:
+      - pde-network
+
+  # PostgreSQL database for metadata and results
+  postgres:
+    image: postgres:15-alpine
+    container_name: pde-postgres
+    restart: unless-stopped
+    
+    environment:
+      - POSTGRES_DB=pde_fluid_phi
+      - POSTGRES_USER=pde_user
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_INITDB_ARGS=--auth-host=scram-sha-256
+    
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    
+    ports:
+      - "5432:5432"
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pde_user -d pde_fluid_phi"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    
+    networks:
+      - pde-network
+    
+    # Security hardening
+    security_opt:
+      - no-new-privileges:true
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '2'
+
+  # Redis for caching and session management
+  redis:
+    image: redis:7-alpine
+    container_name: pde-redis
+    restart: unless-stopped
+    
+    command: >
+      redis-server 
+      --appendonly yes 
+      --appendfsync everysec
+      --maxmemory 1gb
+      --maxmemory-policy allkeys-lru
+      --requirepass ${REDIS_PASSWORD}
+    
+    volumes:
+      - redis_data:/data
+    
+    ports:
+      - "6379:6379"
+    
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    
+    networks:
+      - pde-network
+    
+    # Security hardening
+    security_opt:
+      - no-new-privileges:true
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1'
+
+  # NGINX reverse proxy and load balancer
+  nginx:
+    image: nginx:alpine
+    container_name: pde-nginx
+    restart: unless-stopped
+    
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - nginx_logs:/var/log/nginx
+    
+    ports:
+      - "80:80"
+      - "443:443"
+    
+    depends_on:
+      - pde-fluid-phi
+    
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    
+    networks:
+      - pde-network
+    
+    # Security hardening
+    security_opt:
+      - no-new-privileges:true
+
+  # Prometheus for monitoring
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: pde-prometheus
+    restart: unless-stopped
+    
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=30d'
+      - '--web.enable-lifecycle'
+      - '--web.enable-admin-api'
+    
+    ports:
+      - "9090:9090"
+    
+    networks:
+      - pde-network
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1'
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: pde-grafana
+    restart: unless-stopped
+    
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SECURITY_DISABLE_GRAVATAR=true
+      - GF_ANALYTICS_REPORTING_ENABLED=false
+    
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    
+    ports:
+      - "3000:3000"
+    
+    depends_on:
+      - prometheus
+    
+    networks:
+      - pde-network
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+
+  # Log aggregation with Fluentd
+  fluentd:
+    image: fluent/fluentd:v1.16-debian-1
+    container_name: pde-fluentd
+    restart: unless-stopped
+    
+    volumes:
+      - ./fluentd/fluent.conf:/fluentd/etc/fluent.conf:ro
+      - pde_logs:/app/logs:ro
+      - nginx_logs:/var/log/nginx:ro
+    
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    
+    networks:
+      - pde-network
+
+# Named volumes for data persistence
+volumes:
+  pde_data:
+    driver: local
+  pde_models:
+    driver: local  
+  pde_logs:
+    driver: local
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+  nginx_logs:
+    driver: local
+
+# Network for service communication
+networks:
+  pde-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
