@@ -224,10 +224,11 @@ class StabilityTrainer:
             
             # Log batch metrics
             if batch_idx % 50 == 0:
+                spectral_radius = stability_metrics.get('spectral_radius', 0)
                 print(f"Epoch {epoch}, Batch {batch_idx}/{n_batches}: "
                       f"Loss = {total_loss.item():.6f}, "
                       f"Grad Norm = {grad_norm:.6f}, "
-                      f"Stability = {stability_metrics.get('spectral_radius', 0):.4f}")
+                      f"Stability = {spectral_radius:.4f}")
         
         # Average losses and metrics
         for key in epoch_losses:
@@ -494,7 +495,8 @@ class StabilityTrainer:
             
             if self.log_wandb:
                 log_dict = {f"train/{k}": v for k, v in train_metrics.items()}
-                log_dict.update({f"val/{k}": v for k, v in val_metrics.items()})
+                if val_metrics:
+                    log_dict.update({f"val/{k}": v for k, v in val_metrics.items()})
                 log_dict['epoch'] = epoch
                 log_dict['learning_rate'] = self.optimizer.param_groups[0]['lr']
                 wandb.log(log_dict)
