@@ -1,0 +1,272 @@
+{
+  "timestamp": 1755243630.894215,
+  "execution_time_seconds": 0.027027606964111328,
+  "repository_path": "/root/repo",
+  "results": [
+    {
+      "gate_name": "Code Quality",
+      "passed": true,
+      "score": 100.0,
+      "details": {
+        "python_files_count": 71,
+        "has_src_structure": true,
+        "init_files_count": 11,
+        "docstring_ratio": 1.0,
+        "type_hint_ratio": 1.0
+      },
+      "execution_time": 0.008842945098876953,
+      "recommendations": []
+    },
+    {
+      "gate_name": "Security",
+      "passed": false,
+      "score": 55.0,
+      "details": {
+        "has_security_report": true,
+        "security_report": {
+          "scan_summary": {
+            "total_issues": 8,
+            "critical_count": 0,
+            "high_count": 4,
+            "medium_count": 4,
+            "low_count": 0,
+            "dependency_vulnerabilities": 1,
+            "has_blocking_issues": true
+          },
+          "metadata": {
+            "scan_start_time": "1755092135.6445673",
+            "root_path": ".",
+            "scanner_version": "1.0.0",
+            "scan_end_time": "1755092137.2989948"
+          },
+          "issues_by_severity": {
+            "critical": [],
+            "high": [
+              {
+                "id": "insecure_deserialization_319_23",
+                "title": "Insecure Deserialization Detected",
+                "description": "Insecure deserialization detected",
+                "severity": "high",
+                "file_path": "src/pde_fluid_phi/utils/io_utils.py",
+                "line_number": 319,
+                "column_number": 23,
+                "cwe_id": "CWE-502",
+                "fix_suggestion": "Use safe serialization formats like JSON",
+                "confidence": "medium"
+              },
+              {
+                "id": "config_cred_docker-compose.yml_172",
+                "title": "Hardcoded Credentials in Configuration",
+                "description": "Configuration file contains hardcoded credentials",
+                "severity": "high",
+                "file_path": "docker-compose.yml",
+                "line_number": 172,
+                "column_number": 0,
+                "cwe_id": "CWE-798",
+                "fix_suggestion": "Use environment variables for sensitive data",
+                "confidence": "medium"
+              },
+              {
+                "id": "config_cred_docker-compose.yml_203",
+                "title": "Hardcoded Credentials in Configuration",
+                "description": "Configuration file contains hardcoded credentials",
+                "severity": "high",
+                "file_path": "docker-compose.yml",
+                "line_number": 203,
+                "column_number": 0,
+                "cwe_id": "CWE-798",
+                "fix_suggestion": "Use environment variables for sensitive data",
+                "confidence": "medium"
+              },
+              {
+                "id": "config_cred_docker-compose.yml_218",
+                "title": "Hardcoded Credentials in Configuration",
+                "description": "Configuration file contains hardcoded credentials",
+                "severity": "high",
+                "file_path": "docker-compose.yml",
+                "line_number": 218,
+                "column_number": 0,
+                "cwe_id": "CWE-798",
+                "fix_suggestion": "Use environment variables for sensitive data",
+                "confidence": "medium"
+              }
+            ],
+            "medium": [
+              {
+                "id": "weak_random_168_22",
+                "title": "Weak Random Detected",
+                "description": "Use of weak random number generator",
+                "severity": "medium",
+                "file_path": "security_scan.py",
+                "line_number": 168,
+                "column_number": 22,
+                "cwe_id": "CWE-338",
+                "fix_suggestion": "Use secrets module for cryptographic randomness",
+                "confidence": "medium"
+              },
+              {
+                "id": "weak_random_372_14",
+                "title": "Weak Random Detected",
+                "description": "Use of weak random number generator",
+                "severity": "medium",
+                "file_path": "scripts/security_scan.py",
+                "line_number": 372,
+                "column_number": 14,
+                "cwe_id": "CWE-338",
+                "fix_suggestion": "Use secrets module for cryptographic randomness",
+                "confidence": "medium"
+              },
+              {
+                "id": "dangerous_import_12_0",
+                "title": "Potentially Dangerous Import",
+                "description": "Import of pickle can be dangerous for deserialization",
+                "severity": "medium",
+                "file_path": "src/pde_fluid_phi/optimization/caching.py",
+                "line_number": 12,
+                "column_number": 0,
+                "cwe_id": "CWE-502",
+                "fix_suggestion": null,
+                "confidence": "medium"
+              },
+              {
+                "id": "dangerous_import_12_0",
+                "title": "Potentially Dangerous Import",
+                "description": "Import of pickle can be dangerous for deserialization",
+                "severity": "medium",
+                "file_path": "src/pde_fluid_phi/utils/io_utils.py",
+                "line_number": 12,
+                "column_number": 0,
+                "cwe_id": "CWE-502",
+                "fix_suggestion": null,
+                "confidence": "medium"
+              }
+            ],
+            "low": []
+          },
+          "dependency_vulnerabilities": [
+            {
+              "package": "torch",
+              "version": "2.0.0",
+              "vulnerability_id": "MANUAL-TORCH",
+              "advisory": "Security vulnerabilities in older PyTorch versions",
+              "severity": "medium"
+            }
+          ]
+        },
+        "has_security_script": true,
+        "potential_security_issues": 9
+      },
+      "execution_time": 0.004822492599487305,
+      "recommendations": [
+        "Review 9 potential security issues"
+      ]
+    },
+    {
+      "gate_name": "Performance",
+      "passed": true,
+      "score": 100.0,
+      "details": {
+        "has_performance_benchmarks_py": true,
+        "has_scripts_performance_benchmark_py": true,
+        "has_benchmark_results_mock_json": true,
+        "benchmark_files_found": 3,
+        "optimization_modules": 7,
+        "profiling_mentions": 5
+      },
+      "execution_time": 0.004770040512084961,
+      "recommendations": []
+    },
+    {
+      "gate_name": "Documentation",
+      "passed": true,
+      "score": 100.0,
+      "details": {
+        "README.md_size": 19055,
+        "ARCHITECTURE.md_size": 9725,
+        "CHANGELOG.md_size": 5839,
+        "CONTRIBUTING.md_size": 14094,
+        "LICENSE_size": 1071,
+        "documentation_score": 100.0,
+        "docs_directory_files": 3,
+        "example_files": 3
+      },
+      "execution_time": 0.0005276203155517578,
+      "recommendations": []
+    },
+    {
+      "gate_name": "Deployment",
+      "passed": true,
+      "score": 100.0,
+      "details": {
+        "has_Dockerfile": true,
+        "has_docker-compose_yml": true,
+        "has_deployment_docker-compose_prod_yml": true,
+        "has_deployment_kubernetes_deployment_yaml": true,
+        "has_deployment_helm_pde-fluid-phi_Chart_yaml": true,
+        "has_pyproject_toml": true,
+        "has_requirements_txt": true,
+        "deployment_score": 100.0,
+        "deployment_scripts": 2,
+        "monitoring_files": 2
+      },
+      "execution_time": 0.00026345252990722656,
+      "recommendations": []
+    },
+    {
+      "gate_name": "Testing",
+      "passed": true,
+      "score": 90.0,
+      "details": {
+        "test_files_count": 6,
+        "has_integration_tests": true,
+        "has_comprehensive_tests": true,
+        "has_core_functionality_tests": true,
+        "test_types_coverage": 3,
+        "has_test_config": true,
+        "has_ci_cd": false
+      },
+      "execution_time": 0.0009758472442626953,
+      "recommendations": [
+        "Add CI/CD pipeline for automated testing"
+      ]
+    },
+    {
+      "gate_name": "Architecture",
+      "passed": true,
+      "score": 100.0,
+      "details": {
+        "has_architecture_docs": true,
+        "module_count": 10,
+        "expected_modules_found": 5,
+        "design_patterns_found": 6
+      },
+      "execution_time": 0.0042722225189208984,
+      "recommendations": []
+    },
+    {
+      "gate_name": "Dependencies",
+      "passed": true,
+      "score": 100.0,
+      "details": {
+        "has_requirements_txt": true,
+        "has_pyproject_toml": true,
+        "has_setup_py": true,
+        "dependency_score": 90.0,
+        "pyproject_sections": 3,
+        "dependency_pinning_ratio": 1.0
+      },
+      "execution_time": 0.0003247261047363281,
+      "recommendations": []
+    }
+  ],
+  "summary": {
+    "total_gates": 8,
+    "passed_gates": 7,
+    "failed_gates": 1,
+    "overall_passed": false,
+    "average_score": 93.125
+  },
+  "recommendations": [
+    "Security: Review 9 potential security issues"
+  ]
+}

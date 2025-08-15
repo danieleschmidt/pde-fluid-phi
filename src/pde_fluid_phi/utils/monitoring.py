@@ -1,8 +1,9 @@
 """
-Monitoring and health check utilities for PDE-Fluid-Φ.
+Enhanced monitoring and health check utilities for PDE-Fluid-Φ.
 
 Provides comprehensive monitoring of model performance, system resources,
-training stability, and health checks for production deployment.
+training stability, and health checks for production deployment with
+advanced analytics, alerting, and real-time insights.
 """
 
 import time
@@ -10,20 +11,62 @@ import psutil
 import torch
 import numpy as np
 from typing import Dict, Any, List, Optional, Callable, Union, Tuple
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 from collections import deque, defaultdict
 from threading import Thread, Event, Lock
 import json
 import logging
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 import warnings
+from abc import ABC, abstractmethod
+from enum import Enum
+import queue
+import statistics
+import traceback
+from concurrent.futures import ThreadPoolExecutor
 
 try:
     import GPUtil
     GPU_AVAILABLE = True
 except ImportError:
     GPU_AVAILABLE = False
+
+
+class AlertSeverity(Enum):
+    """Alert severity levels for enhanced monitoring."""
+    INFO = "info"
+    WARNING = "warning"  
+    ERROR = "error"
+    CRITICAL = "critical"
+
+
+class MetricTrend(Enum):
+    """Trend analysis for metrics."""
+    IMPROVING = "improving"
+    DEGRADING = "degrading"
+    STABLE = "stable"
+    VOLATILE = "volatile"
+    UNKNOWN = "unknown"
+
+
+@dataclass
+class EnhancedAlert:
+    """Enhanced alert with comprehensive metadata."""
+    severity: AlertSeverity
+    message: str
+    metric_name: str
+    current_value: float
+    threshold: float
+    timestamp: float
+    duration_seconds: Optional[float] = None
+    trend: Optional[MetricTrend] = None
+    context: Dict[str, Any] = field(default_factory=dict)
+    recommendations: List[str] = field(default_factory=list)
+    resolved: bool = False
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
 
 
 @dataclass
