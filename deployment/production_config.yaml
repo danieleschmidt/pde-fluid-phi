@@ -1,0 +1,431 @@
+# Production Deployment Configuration for PDE-Fluid-Φ Neural Operator Framework
+# Comprehensive configuration for high-performance turbulence simulation
+
+# =============================================================================
+# MODEL CONFIGURATION
+# =============================================================================
+model:
+  name: "rational-fno-turbulence"
+  version: "1.0.0"
+  architecture: "RationalFNO"
+  parameters:
+    modes: [32, 32, 32]          # Fourier modes for high resolution
+    width: 128                   # Model width for production
+    n_layers: 8                  # Deep network for complex dynamics
+    in_channels: 3               # u, v, w velocity components
+    out_channels: 3              # Predicted velocity components
+    rational_order: [6, 6]       # Higher order for accuracy
+    activation: "gelu"
+    final_activation: null
+    stability_weight: 0.01
+    spectral_reg_weight: 0.001
+    multi_scale: true
+
+# =============================================================================
+# TRAINING CONFIGURATION
+# =============================================================================
+training:
+  batch_size: 16                 # Optimized for GPU memory
+  learning_rate: 1e-4
+  max_epochs: 1000
+  warmup_epochs: 50
+  weight_decay: 1e-5
+  gradient_clip_norm: 1.0
+  
+  # Distributed training
+  distributed:
+    enabled: true
+    backend: "nccl"
+    world_size: 4
+    gradient_accumulation_steps: 2
+    find_unused_parameters: false
+    bucket_cap_mb: 25
+  
+  # Mixed precision
+  mixed_precision:
+    enabled: true
+    loss_scale: "dynamic"
+    
+  # Optimization
+  optimizer:
+    type: "AdamW"
+    betas: [0.9, 0.999]
+    eps: 1e-8
+    amsgrad: false
+  
+  scheduler:
+    type: "CosineAnnealingWarmRestarts"
+    T_0: 100
+    T_mult: 2
+    eta_min: 1e-7
+
+# =============================================================================
+# DATA CONFIGURATION
+# =============================================================================
+data:
+  dataset_type: "TurbulenceDataset"
+  resolution: [64, 64, 64]       # High resolution for production
+  reynolds_numbers: [1000, 5000, 10000, 50000]  # Multiple Re for robustness
+  
+  # Training data
+  train:
+    n_samples: 10000
+    data_paths:
+      - "/data/turbulence/train/"
+    preprocessing:
+      normalize: true
+      augment: true
+      spectral_filter: true
+  
+  # Validation data
+  validation:
+    n_samples: 2000
+    data_paths:
+      - "/data/turbulence/val/"
+    preprocessing:
+      normalize: true
+      augment: false
+  
+  # Test data
+  test:
+    n_samples: 1000
+    data_paths:
+      - "/data/turbulence/test/"
+  
+  # Data loading
+  dataloader:
+    num_workers: 8
+    pin_memory: true
+    persistent_workers: true
+    prefetch_factor: 2
+
+# =============================================================================
+# INFRASTRUCTURE CONFIGURATION
+# =============================================================================
+infrastructure:
+  # Hardware requirements
+  hardware:
+    min_gpu_memory_gb: 24        # V100/A100 class
+    recommended_gpu_memory_gb: 40
+    min_cpu_cores: 16
+    min_ram_gb: 64
+    storage_type: "NVMe SSD"
+    min_storage_gb: 1000
+  
+  # Compute environment
+  compute:
+    framework: "pytorch"
+    cuda_version: "11.8"
+    python_version: "3.9"
+    platform: "linux"
+  
+  # Containerization
+  container:
+    base_image: "pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel"
+    registry: "us-central1-docker.pkg.dev/turbulence-ai/models"
+    tag_strategy: "semantic_version"
+  
+  # Kubernetes deployment
+  kubernetes:
+    namespace: "turbulence-training"
+    resources:
+      requests:
+        cpu: "8"
+        memory: "32Gi"
+        nvidia.com/gpu: "1"
+      limits:
+        cpu: "16"
+        memory: "64Gi"
+        nvidia.com/gpu: "1"
+    
+    # Node selection
+    nodeSelector:
+      accelerator: "nvidia-tesla-v100"
+      node-type: "gpu-optimized"
+    
+    # Scaling
+    autoscaling:
+      enabled: true
+      min_replicas: 1
+      max_replicas: 8
+      target_gpu_utilization: 80
+
+# =============================================================================
+# MONITORING AND OBSERVABILITY
+# =============================================================================
+monitoring:
+  # Metrics collection
+  metrics:
+    enabled: true
+    collection_interval: "30s"
+    retention_period: "30d"
+    
+    # Training metrics
+    training_metrics:
+      - "loss"
+      - "gradient_norm"
+      - "learning_rate"
+      - "throughput"
+      - "memory_usage"
+      - "gpu_utilization"
+      - "stability_metrics"
+    
+    # System metrics
+    system_metrics:
+      - "cpu_usage"
+      - "memory_usage"
+      - "gpu_utilization"
+      - "disk_io"
+      - "network_io"
+      - "temperature"
+  
+  # Logging
+  logging:
+    level: "INFO"
+    format: "json"
+    output: "stdout"
+    retention_days: 30
+    
+    # Log aggregation
+    aggregation:
+      enabled: true
+      backend: "elasticsearch"
+      index_pattern: "turbulence-logs-%{+YYYY.MM.dd}"
+  
+  # Alerting
+  alerting:
+    enabled: true
+    channels:
+      - "slack"
+      - "email"
+    
+    rules:
+      - name: "training_stalled"
+        condition: "loss not decreasing for 1 hour"
+        severity: "warning"
+      
+      - name: "gpu_memory_high"
+        condition: "gpu_memory_usage > 90% for 10 minutes"
+        severity: "warning"
+      
+      - name: "training_failed"
+        condition: "job_status == failed"
+        severity: "critical"
+
+# =============================================================================
+# PERFORMANCE OPTIMIZATION
+# =============================================================================
+optimization:
+  # Model optimization
+  model_optimization:
+    compile: true
+    compile_mode: "max-autotune"
+    jit_script: false
+    quantization: false          # Keep full precision for research
+    
+  # Memory optimization
+  memory_optimization:
+    gradient_checkpointing: true
+    mixed_precision: true
+    cpu_offload: false
+    activation_checkpointing: true
+    
+  # Compute optimization
+  compute_optimization:
+    torch_backends: "inductor"
+    cudnn_benchmark: true
+    channels_last: true
+    pin_memory: true
+
+# =============================================================================
+# CHECKPOINTING AND RECOVERY
+# =============================================================================
+checkpointing:
+  enabled: true
+  frequency: "every_epoch"
+  keep_last_n: 10
+  
+  # Storage configuration
+  storage:
+    backend: "gcs"              # Google Cloud Storage
+    bucket: "turbulence-checkpoints"
+    path_prefix: "rational-fno-v1"
+    compression: true
+  
+  # Recovery settings
+  recovery:
+    auto_resume: true
+    max_resume_attempts: 3
+    resume_from_best: true
+
+# =============================================================================
+# SECURITY AND COMPLIANCE
+# =============================================================================
+security:
+  # Authentication
+  authentication:
+    type: "service_account"
+    key_path: "/secrets/gcp-service-account.json"
+  
+  # Encryption
+  encryption:
+    at_rest: true
+    in_transit: true
+    key_management: "cloud_kms"
+  
+  # Network security
+  network:
+    vpc_native: true
+    private_cluster: true
+    authorized_networks:
+      - "10.0.0.0/8"
+  
+  # Compliance
+  compliance:
+    gdpr_compliant: true
+    hipaa_compliant: false
+    data_retention_days: 2555    # 7 years for research
+
+# =============================================================================
+# QUALITY GATES
+# =============================================================================
+quality_gates:
+  # Pre-deployment validation
+  validation:
+    model_tests:
+      - "forward_pass_test"
+      - "backward_pass_test"
+      - "numerical_stability_test"
+      - "conservation_laws_test"
+      - "performance_benchmark"
+    
+    data_validation:
+      - "data_integrity_check"
+      - "statistical_validation"
+      - "physics_constraints_check"
+    
+    performance_requirements:
+      min_throughput_samples_per_sec: 10
+      max_memory_usage_gb: 20
+      max_training_time_hours: 168  # 1 week
+  
+  # Deployment gates
+  deployment:
+    approval_required: true
+    approvers:
+      - "ml-engineering-team"
+      - "research-team"
+    
+    automated_tests:
+      - "integration_test"
+      - "load_test"
+      - "failover_test"
+
+# =============================================================================
+# BACKUP AND DISASTER RECOVERY
+# =============================================================================
+backup:
+  enabled: true
+  frequency: "daily"
+  retention_policy:
+    daily: 30
+    weekly: 12
+    monthly: 12
+    yearly: 7
+  
+  # Backup destinations
+  destinations:
+    primary: "gcs://turbulence-backups/primary/"
+    secondary: "s3://turbulence-backups-us-east/"
+  
+  # Disaster recovery
+  disaster_recovery:
+    rto_hours: 4               # Recovery Time Objective
+    rpo_hours: 1               # Recovery Point Objective
+    cross_region_replication: true
+
+# =============================================================================
+# COST OPTIMIZATION
+# =============================================================================
+cost_optimization:
+  # Resource scheduling
+  scheduling:
+    preemptible_instances: true
+    auto_scaling: true
+    idle_shutdown_minutes: 30
+  
+  # Cost monitoring
+  budget:
+    monthly_limit_usd: 5000
+    alerts:
+      - threshold: 50
+        action: "notify"
+      - threshold: 80
+        action: "scale_down"
+      - threshold: 95
+        action: "stop_training"
+  
+  # Resource optimization
+  resource_optimization:
+    spot_instances: true
+    reserved_instances: false
+    gpu_sharing: false          # Keep dedicated for performance
+
+# =============================================================================
+# ENVIRONMENT CONFIGURATION
+# =============================================================================
+environments:
+  development:
+    model:
+      modes: [8, 8, 8]
+      width: 32
+      n_layers: 2
+    training:
+      batch_size: 4
+      max_epochs: 10
+    data:
+      n_samples: 100
+  
+  staging:
+    model:
+      modes: [16, 16, 16]
+      width: 64
+      n_layers: 4
+    training:
+      batch_size: 8
+      max_epochs: 100
+    data:
+      n_samples: 1000
+  
+  production:
+    # Use main configuration above
+    inherits: "main"
+
+# =============================================================================
+# METADATA AND VERSIONING
+# =============================================================================
+metadata:
+  created_by: "Terragon Labs"
+  creation_date: "2024-08-14"
+  description: "Production configuration for Rational-FNO turbulence neural operator"
+  contact: "ml-ops@terragonlabs.ai"
+  documentation: "https://docs.terragonlabs.ai/rational-fno/"
+  
+  # Version control
+  config_version: "1.0.0"
+  schema_version: "2024.1"
+  last_updated: "2024-08-14T10:00:00Z"
+  
+  # Dependencies
+  dependencies:
+    pytorch: ">=2.0.0"
+    cuda: ">=11.8"
+    python: ">=3.9"
+  
+  # Tags for organization
+  tags:
+    - "neural-operators"
+    - "turbulence"
+    - "cfd"
+    - "high-performance"
+    - "research"

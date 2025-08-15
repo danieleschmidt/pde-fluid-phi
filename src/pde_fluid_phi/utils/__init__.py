@@ -12,7 +12,7 @@ from .spectral_utils import *
 from .logging_utils import setup_logging, get_logger
 from .config_utils import load_config, validate_config, save_config
 from .device_utils import get_device, move_to_device
-from .io_utils import create_directories, save_results, load_results
+from .io_utils import create_directories, SafeFileIO
 
 __all__ = [
     # Spectral utilities (from spectral_utils.py)
@@ -38,6 +38,5 @@ __all__ = [
     
     # I/O utilities
     'create_directories',
-    'save_results',
-    'load_results'
+    'SafeFileIO'
 ]

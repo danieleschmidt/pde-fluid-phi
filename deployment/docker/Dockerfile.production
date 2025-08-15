@@ -1,0 +1,241 @@
+# Production Dockerfile for PDE-Fluid-Φ Neural Operator Framework
+# Optimized for high-performance turbulence simulation training
+
+# =============================================================================
+# MULTI-STAGE BUILD FOR OPTIMIZATION
+# =============================================================================
+
+# Base image with CUDA and PyTorch
+FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel as base
+
+# Set environment variables for CUDA
+ENV CUDA_DEVICE_ORDER=PCI_BUS_ID
+ENV CUDA_VISIBLE_DEVICES=0,1,2,3
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
+
+# Set Python environment
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PIP_NO_CACHE_DIR=1
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# =============================================================================
+# SYSTEM DEPENDENCIES
+# =============================================================================
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    curl \
+    git \
+    wget \
+    unzip \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libgomp1 \
+    libfftw3-dev \
+    libopenmpi-dev \
+    libomp-dev \
+    htop \
+    nvtop \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip install --upgrade pip setuptools wheel
+
+# =============================================================================
+# PYTHON DEPENDENCIES
+# =============================================================================
+
+# Copy requirements first for better caching
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+
+# Install additional production dependencies
+RUN pip install \
+    # Performance and monitoring
+    wandb \
+    tensorboard \
+    nvidia-ml-py3 \
+    gpustat \
+    # Distributed training
+    torch-distributed \
+    # Scientific computing
+    scipy \
+    numpy \
+    h5py \
+    netcdf4 \
+    # Optimization
+    einops \
+    # Development and debugging
+    pytest \
+    black \
+    isort \
+    flake8 \
+    mypy \
+    # Production utilities
+    gunicorn \
+    uvicorn \
+    fastapi \
+    prometheus-client \
+    # Cloud storage
+    google-cloud-storage \
+    boto3
+
+# =============================================================================
+# APPLICATION SETUP
+# =============================================================================
+
+# Create application directory
+WORKDIR /app
+
+# Copy source code
+COPY src/ /app/src/
+COPY deployment/ /app/deployment/
+COPY tests/ /app/tests/
+COPY pyproject.toml /app/
+COPY README.md /app/
+COPY CHANGELOG.md /app/
+
+# Install the package in development mode
+RUN pip install -e .
+
+# =============================================================================
+# CONFIGURATION AND SECRETS
+# =============================================================================
+
+# Create directories for data, models, and logs
+RUN mkdir -p /app/data \
+             /app/models \
+             /app/logs \
+             /app/checkpoints \
+             /app/artifacts \
+             /app/configs \
+             /secrets
+
+# Copy configuration files
+COPY deployment/production_config.yaml /app/configs/
+COPY deployment/logging_config.yaml /app/configs/
+
+# =============================================================================
+# USER AND PERMISSIONS
+# =============================================================================
+
+# Create non-root user for security
+RUN groupadd -r appgroup && useradd -r -g appgroup appuser
+
+# Set ownership and permissions
+RUN chown -R appuser:appgroup /app \
+    && chmod -R 755 /app \
+    && chmod -R 777 /app/logs \
+    && chmod -R 777 /app/checkpoints \
+    && chmod -R 777 /app/artifacts
+
+# =============================================================================
+# HEALTH CHECKS AND MONITORING
+# =============================================================================
+
+# Install health check dependencies
+RUN pip install requests psutil
+
+# Copy health check script
+COPY deployment/scripts/healthcheck.py /app/scripts/
+RUN chmod +x /app/scripts/healthcheck.py
+
+# Health check configuration
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD python /app/scripts/healthcheck.py
+
+# =============================================================================
+# OPTIMIZATION STAGE
+# =============================================================================
+
+FROM base as optimized
+
+# Pre-compile PyTorch models for faster startup
+RUN python -c "import torch; torch.jit.script(torch.nn.Linear(10, 1))"
+
+# Optimize Python bytecode
+RUN python -m compileall /app/src
+
+# Clear pip cache and temporary files
+RUN pip cache purge && \
+    rm -rf /tmp/* /var/tmp/* && \
+    apt-get clean
+
+# =============================================================================
+# PRODUCTION STAGE
+# =============================================================================
+
+FROM optimized as production
+
+# Switch to non-root user
+USER appuser
+
+# Set working directory
+WORKDIR /app
+
+# Expose ports for monitoring and API
+EXPOSE 8080 8888 6006
+
+# Set default environment
+ENV ENVIRONMENT=production
+ENV CONFIG_PATH=/app/configs/production_config.yaml
+ENV LOG_LEVEL=INFO
+
+# =============================================================================
+# ENTRYPOINTS AND COMMANDS
+# =============================================================================
+
+# Copy entrypoint scripts
+COPY --chown=appuser:appgroup deployment/scripts/entrypoint.sh /app/scripts/
+COPY --chown=appuser:appgroup deployment/scripts/train.py /app/scripts/
+COPY --chown=appuser:appgroup deployment/scripts/monitor.py /app/scripts/
+
+# Make scripts executable
+USER root
+RUN chmod +x /app/scripts/*.sh /app/scripts/*.py
+USER appuser
+
+# Default entrypoint
+ENTRYPOINT ["/app/scripts/entrypoint.sh"]
+
+# Default command (training)
+CMD ["train"]
+
+# =============================================================================
+# LABELS AND METADATA
+# =============================================================================
+
+LABEL maintainer="Terragon Labs <ml-ops@terragonlabs.ai>"
+LABEL version="1.0.0"
+LABEL description="Production Docker image for PDE-Fluid-Φ Neural Operator Framework"
+LABEL framework="pytorch"
+LABEL cuda.version="11.7"
+LABEL python.version="3.9"
+
+# Build metadata
+LABEL org.opencontainers.image.title="PDE-Fluid-Φ Neural Operator"
+LABEL org.opencontainers.image.description="High-performance neural operator for turbulence simulation"
+LABEL org.opencontainers.image.version="1.0.0"
+LABEL org.opencontainers.image.created="2024-08-14T10:00:00Z"
+LABEL org.opencontainers.image.source="https://github.com/terragon-labs/pde-fluid-phi"
+LABEL org.opencontainers.image.vendor="Terragon Labs"
+LABEL org.opencontainers.image.licenses="Apache-2.0"
+
+# Performance optimization labels
+LABEL performance.gpu.required="true"
+LABEL performance.gpu.memory.min="24GB"
+LABEL performance.cpu.cores.min="16"
+LABEL performance.memory.min="64GB"
+
+# Usage examples in labels
+LABEL usage.training="docker run --gpus all -v /data:/app/data terragon/pde-fluid-phi:latest train"
+LABEL usage.inference="docker run --gpus all -v /models:/app/models terragon/pde-fluid-phi:latest infer"
+LABEL usage.api="docker run --gpus all -p 8080:8080 terragon/pde-fluid-phi:latest api"

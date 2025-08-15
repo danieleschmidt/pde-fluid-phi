@@ -106,6 +106,9 @@ class RationalFourierLayer(nn.Module):
         # Extract only the relevant modes from input
         x_modes = x_ft[:, :, :kx_max, :ky_max, :kz_max//2+1]
         
+        # Convert R_k to complex for multiplication with complex Fourier coefficients
+        R_k = R_k.to(dtype=x_modes.dtype)
+        
         # Apply rational transfer function
         out_modes = torch.einsum('bixyz,oixyz->boxyz', x_modes, R_k)
         
@@ -124,13 +127,22 @@ class RationalFourierLayer(nn.Module):
     ) -> torch.Tensor:
         """Evaluate polynomial with coefficients at wavenumber points."""
         order = coeffs.shape[-1]
-        result = torch.zeros_like(coeffs[..., 0, 0, 0])
+        # Initialize result with proper shape: [out_channels, in_channels, kx, ky, kz]
+        out_channels, in_channels = coeffs.shape[:2]
+        result_shape = (out_channels, in_channels) + k_x.shape
+        result = torch.zeros(result_shape, device=coeffs.device, dtype=coeffs.dtype)
         
         for i in range(order):
             for j in range(order):
                 for k in range(order):
                     if i + j + k < order:  # Only include terms up to polynomial order
-                        term = coeffs[..., i, j, k] * (k_x ** i) * (k_y ** j) * (k_z ** k)
+                        # Expand coefficient to match spatial dimensions
+                        coeff = coeffs[..., i, j, k].unsqueeze(-1).unsqueeze(-1).unsqueeze(-1)
+                        coeff = coeff.expand(result_shape)
+                        
+                        # Compute polynomial term
+                        k_term = (k_x ** i) * (k_y ** j) * (k_z ** k)
+                        term = coeff * k_term
                         result = result + term
         
         return result
