@@ -1,0 +1,609 @@
+---
+# Production-Ready Deployment Configuration for PDE-Fluid-Phi
+# Comprehensive deployment setup with high availability, monitoring, and security
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pde-fluid-phi
+  labels:
+    app: pde-fluid-phi
+    environment: production
+    version: "1.0.0"
+
+---
+# ConfigMap for application configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pde-fluid-phi-config
+  namespace: pde-fluid-phi
+data:
+  config.yaml: |
+    # PDE-Fluid-Phi Production Configuration
+    model:
+      rational_order: [4, 4]
+      modes: [64, 64, 64]
+      width: 128
+      n_layers: 8
+      stability_constraints:
+        method: "rational_decay"
+        decay_rate: 2.0
+        max_spectral_radius: 0.99
+    
+    training:
+      batch_size: 8
+      learning_rate: 1e-4
+      max_epochs: 1000
+      checkpoint_interval: 100
+      validation_interval: 10
+      early_stopping_patience: 50
+    
+    performance:
+      enable_mixed_precision: true
+      enable_torch_compile: true
+      memory_optimization: true
+      distributed_training: true
+      num_workers: 4
+    
+    monitoring:
+      enable_metrics: true
+      metrics_port: 8080
+      health_check_port: 8081
+      log_level: "INFO"
+      telemetry_interval: 30
+    
+    security:
+      enable_auth: true
+      token_expiry: 3600
+      rate_limiting: true
+      max_requests_per_minute: 100
+
+---
+# Secret for sensitive configuration
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pde-fluid-phi-secrets
+  namespace: pde-fluid-phi
+type: Opaque
+data:
+  # Base64 encoded secrets (replace with actual values)
+  database-password: cGRlLWZsdWlkLXBoaS1kYi1wYXNzd29yZA==
+  api-key: cGRlLWZsdWlkLXBoaS1hcGkta2V5
+  jwt-secret: cGRlLWZsdWlkLXBoaS1qd3Qtc2VjcmV0
+
+---
+# Persistent Volume for model storage
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pde-fluid-phi-models-pv
+  namespace: pde-fluid-phi
+spec:
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: fast-ssd
+  hostPath:
+    path: /mnt/pde-fluid-phi/models
+
+---
+# Persistent Volume Claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pde-fluid-phi-models-pvc
+  namespace: pde-fluid-phi
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: fast-ssd
+
+---
+# Service Account for RBAC
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pde-fluid-phi-sa
+  namespace: pde-fluid-phi
+
+---
+# ClusterRole for necessary permissions
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pde-fluid-phi-role
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps", "secrets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["metrics.k8s.io"]
+  resources: ["pods", "nodes"]
+  verbs: ["get", "list"]
+
+---
+# ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: pde-fluid-phi-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: pde-fluid-phi-role
+subjects:
+- kind: ServiceAccount
+  name: pde-fluid-phi-sa
+  namespace: pde-fluid-phi
+
+---
+# Main Application Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pde-fluid-phi-app
+  namespace: pde-fluid-phi
+  labels:
+    app: pde-fluid-phi
+    component: main-app
+    version: "1.0.0"
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: pde-fluid-phi
+      component: main-app
+  template:
+    metadata:
+      labels:
+        app: pde-fluid-phi
+        component: main-app
+        version: "1.0.0"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      serviceAccountName: pde-fluid-phi-sa
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+      - name: pde-fluid-phi
+        image: pde-fluid-phi:1.0.0-production
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+          name: http
+        - containerPort: 8080
+          name: metrics
+        - containerPort: 8081
+          name: health
+        env:
+        - name: ENVIRONMENT
+          value: "production"
+        - name: LOG_LEVEL
+          value: "INFO"
+        - name: WORKERS
+          value: "4"
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pde-fluid-phi-secrets
+              key: database-password
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: pde-fluid-phi-secrets
+              key: api-key
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: pde-fluid-phi-secrets
+              key: jwt-secret
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config
+          readOnly: true
+        - name: models-volume
+          mountPath: /app/models
+        - name: logs-volume
+          mountPath: /app/logs
+        resources:
+          requests:
+            memory: "8Gi"
+            cpu: "2000m"
+            nvidia.com/gpu: "1"
+          limits:
+            memory: "16Gi"
+            cpu: "4000m"
+            nvidia.com/gpu: "1"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8081
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8081
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+            - ALL
+      volumes:
+      - name: config-volume
+        configMap:
+          name: pde-fluid-phi-config
+      - name: models-volume
+        persistentVolumeClaim:
+          claimName: pde-fluid-phi-models-pvc
+      - name: logs-volume
+        emptyDir: {}
+      nodeSelector:
+        gpu-type: "nvidia-v100"
+      tolerations:
+      - key: "gpu"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - pde-fluid-phi
+              topologyKey: kubernetes.io/hostname
+
+---
+# Horizontal Pod Autoscaler
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: pde-fluid-phi-hpa
+  namespace: pde-fluid-phi
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: pde-fluid-phi-app
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 15
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+
+---
+# Service for internal communication
+apiVersion: v1
+kind: Service
+metadata:
+  name: pde-fluid-phi-service
+  namespace: pde-fluid-phi
+  labels:
+    app: pde-fluid-phi
+    component: service
+spec:
+  selector:
+    app: pde-fluid-phi
+    component: main-app
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+    protocol: TCP
+  - name: metrics
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  - name: health
+    port: 8081
+    targetPort: 8081
+    protocol: TCP
+  type: ClusterIP
+
+---
+# Load Balancer Service for external access
+apiVersion: v1
+kind: Service
+metadata:
+  name: pde-fluid-phi-lb
+  namespace: pde-fluid-phi
+  labels:
+    app: pde-fluid-phi
+    component: load-balancer
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:region:account:certificate/cert-id"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+spec:
+  selector:
+    app: pde-fluid-phi
+    component: main-app
+  ports:
+  - name: https
+    port: 443
+    targetPort: 8000
+    protocol: TCP
+  - name: http
+    port: 80
+    targetPort: 8000
+    protocol: TCP
+  type: LoadBalancer
+
+---
+# Ingress for advanced routing
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pde-fluid-phi-ingress
+  namespace: pde-fluid-phi
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rate-limit: "100"
+    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - api.pde-fluid-phi.com
+    secretName: pde-fluid-phi-tls
+  rules:
+  - host: api.pde-fluid-phi.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: pde-fluid-phi-service
+            port:
+              number: 80
+
+---
+# NetworkPolicy for security
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: pde-fluid-phi-netpol
+  namespace: pde-fluid-phi
+spec:
+  podSelector:
+    matchLabels:
+      app: pde-fluid-phi
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: monitoring
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx
+    ports:
+    - protocol: TCP
+      port: 8000
+    - protocol: TCP
+      port: 8080
+    - protocol: TCP
+      port: 8081
+  egress:
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 443
+    - protocol: TCP
+      port: 80
+    - protocol: UDP
+      port: 53
+
+---
+# PodDisruptionBudget for high availability
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: pde-fluid-phi-pdb
+  namespace: pde-fluid-phi
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: pde-fluid-phi
+      component: main-app
+
+---
+# ServiceMonitor for Prometheus
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: pde-fluid-phi-metrics
+  namespace: pde-fluid-phi
+  labels:
+    app: pde-fluid-phi
+    component: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: pde-fluid-phi
+      component: service
+  endpoints:
+  - port: metrics
+    interval: 30s
+    path: /metrics
+
+---
+# PrometheusRule for alerting
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: pde-fluid-phi-alerts
+  namespace: pde-fluid-phi
+  labels:
+    app: pde-fluid-phi
+    component: monitoring
+spec:
+  groups:
+  - name: pde-fluid-phi.rules
+    rules:
+    - alert: PDEFluidPhiHighCPU
+      expr: rate(container_cpu_usage_seconds_total{namespace="pde-fluid-phi"}[5m]) > 0.8
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High CPU usage detected"
+        description: "CPU usage is above 80% for 5 minutes"
+    
+    - alert: PDEFluidPhiHighMemory
+      expr: container_memory_usage_bytes{namespace="pde-fluid-phi"} / container_spec_memory_limit_bytes > 0.9
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High memory usage detected"
+        description: "Memory usage is above 90% for 5 minutes"
+    
+    - alert: PDEFluidPhiPodCrashLooping
+      expr: rate(kube_pod_container_status_restarts_total{namespace="pde-fluid-phi"}[5m]) > 0
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Pod is crash looping"
+        description: "Pod {{ $labels.pod }} is restarting frequently"
+    
+    - alert: PDEFluidPhiServiceDown
+      expr: up{job="pde-fluid-phi-service"} == 0
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Service is down"
+        description: "PDE-Fluid-Phi service is not responding"
+
+---
+# CronJob for model cleanup
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pde-fluid-phi-cleanup
+  namespace: pde-fluid-phi
+spec:
+  schedule: "0 2 * * 0"  # Weekly on Sunday at 2 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: pde-fluid-phi-sa
+          containers:
+          - name: cleanup
+            image: pde-fluid-phi:1.0.0-production
+            command:
+            - /bin/bash
+            - -c
+            - |
+              echo "Starting model cleanup..."
+              find /app/models -name "*.tmp" -type f -mtime +7 -delete
+              find /app/logs -name "*.log" -type f -mtime +30 -delete
+              echo "Cleanup completed"
+            volumeMounts:
+            - name: models-volume
+              mountPath: /app/models
+            - name: logs-volume
+              mountPath: /app/logs
+            resources:
+              requests:
+                memory: "1Gi"
+                cpu: "100m"
+              limits:
+                memory: "2Gi"
+                cpu: "500m"
+          volumes:
+          - name: models-volume
+            persistentVolumeClaim:
+              claimName: pde-fluid-phi-models-pvc
+          - name: logs-volume
+            emptyDir: {}
+          restartPolicy: OnFailure
+
+---
+# VPA for intelligent resource recommendations
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: pde-fluid-phi-vpa
+  namespace: pde-fluid-phi
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: pde-fluid-phi-app
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: pde-fluid-phi
+      minAllowed:
+        cpu: "1000m"
+        memory: "4Gi"
+      maxAllowed:
+        cpu: "8000m"
+        memory: "32Gi"
+      controlledResources: ["cpu", "memory"]
