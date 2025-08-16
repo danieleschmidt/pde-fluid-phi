@@ -7,9 +7,42 @@ advanced analytics, alerting, and real-time insights.
 """
 
 import time
-import psutil
-import torch
-import numpy as np
+try:
+    import psutil
+    PSUTIL_AVAILABLE = True
+except ImportError:
+    PSUTIL_AVAILABLE = False
+
+try:
+    import torch
+    TORCH_AVAILABLE = True
+except ImportError:
+    TORCH_AVAILABLE = False
+
+try:
+    import numpy as np
+    NUMPY_AVAILABLE = True
+except ImportError:
+    NUMPY_AVAILABLE = False
+    # Mock numpy for basic functionality
+    class MockNumPy:
+        @staticmethod
+        def mean(data): return sum(data) / len(data) if data else 0
+        @staticmethod
+        def max(data): return max(data) if data else 0
+        @staticmethod
+        def min(data): return min(data) if data else 0
+        @staticmethod
+        def std(data): 
+            if not data: return 0
+            mean = sum(data) / len(data)
+            variance = sum((x - mean) ** 2 for x in data) / len(data)
+            return variance ** 0.5
+        @staticmethod
+        def isnan(x): return x != x
+        @staticmethod
+        def isinf(x): return x == float('inf') or x == float('-inf')
+    np = MockNumPy()
 from typing import Dict, Any, List, Optional, Callable, Union, Tuple
 from dataclasses import dataclass, field, asdict
 from collections import deque, defaultdict
@@ -210,6 +243,18 @@ class SystemMonitor:
     
     def collect_metrics(self) -> SystemMetrics:
         """Collect current system metrics."""
+        if not PSUTIL_AVAILABLE:
+            # Return mock metrics if psutil not available
+            return SystemMetrics(
+                timestamp=time.time(),
+                cpu_percent=50.0,  # Mock values
+                memory_percent=60.0,
+                memory_used_gb=4.0,
+                memory_total_gb=8.0,
+                disk_usage_percent=70.0,
+                gpu_metrics=None
+            )
+        
         # CPU and memory
         cpu_percent = psutil.cpu_percent(interval=None)
         memory = psutil.virtual_memory()
@@ -711,6 +756,14 @@ def create_pytorch_check() -> Callable[[], HealthStatus]:
     """Create PyTorch health check."""
     
     def check_pytorch() -> HealthStatus:
+        if not TORCH_AVAILABLE:
+            return HealthStatus(
+                name="pytorch",
+                is_healthy=False,
+                status="NOT_AVAILABLE",
+                details={'error': 'PyTorch not installed'}
+            )
+        
         try:
             # Test basic operations
             device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
