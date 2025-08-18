@@ -4,6 +4,7 @@ Training command implementation for PDE-Fluid-Φ CLI.
 
 import logging
 import torch
+import torch.optim as optim
 from pathlib import Path
 from typing import Optional, Any, Dict
 

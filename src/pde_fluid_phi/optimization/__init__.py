@@ -15,10 +15,17 @@ from .performance_optimization import (
     PerformanceOptimizer,
     BatchSizeOptimizer
 )
-from .distributed_optimization import (
-    DistributedOptimizer,
-    ModelParallelism,
-    DataParallelism
+from .distributed_computing import (
+    DistributedCoordinator,
+    ClusterManager
+)
+from .auto_scaling import (
+    AutoScaler,
+    ResourceMonitor
+)
+from .concurrent_processing import (
+    ThreadPoolExecutor,
+    ProcessPoolExecutor
 )
 from .caching import (
     SpectralCache,
@@ -37,10 +44,17 @@ __all__ = [
     "PerformanceOptimizer",
     "BatchSizeOptimizer",
     
-    # Distributed optimization
-    "DistributedOptimizer",
-    "ModelParallelism",
-    "DataParallelism",
+    # Distributed computing
+    "DistributedCoordinator",
+    "ClusterManager",
+    
+    # Auto scaling
+    "AutoScaler",
+    "ResourceMonitor",
+    
+    # Concurrent processing
+    "ThreadPoolExecutor",
+    "ProcessPoolExecutor",
     
     # Caching
     "SpectralCache",

@@ -1,0 +1,279 @@
+{
+  "scan_timestamp": "/root/repo",
+  "file_integrity": {
+    "files_scanned": 51,
+    "suspicious_files": [
+      "src/pde_fluid_phi/cli/__init__.py",
+      "src/pde_fluid_phi/cli/benchmark.py",
+      "src/pde_fluid_phi/cli/evaluate.py",
+      "src/pde_fluid_phi/cli/main.py",
+      "src/pde_fluid_phi/data/spectral_decomposition.py",
+      "src/pde_fluid_phi/evaluation/__init__.py",
+      "src/pde_fluid_phi/evaluation/metrics.py",
+      "src/pde_fluid_phi/kernels/spectral_kernels.py",
+      "src/pde_fluid_phi/models/multiscale_fno.py",
+      "src/pde_fluid_phi/operators/rational_fourier.py",
+      "src/pde_fluid_phi/optimization/auto_scaling.py",
+      "src/pde_fluid_phi/optimization/caching.py",
+      "src/pde_fluid_phi/optimization/concurrent_processing.py",
+      "src/pde_fluid_phi/optimization/distributed_computing.py",
+      "src/pde_fluid_phi/optimization/distributed_training.py",
+      "src/pde_fluid_phi/optimization/memory_optimization.py",
+      "src/pde_fluid_phi/optimization/performance_optimization.py",
+      "src/pde_fluid_phi/training/curriculum.py",
+      "src/pde_fluid_phi/training/distributed.py",
+      "src/pde_fluid_phi/training/losses.py",
+      "src/pde_fluid_phi/training/stability_trainer.py",
+      "src/pde_fluid_phi/utils/config_utils.py",
+      "src/pde_fluid_phi/utils/device_utils.py",
+      "src/pde_fluid_phi/utils/enhanced_config.py",
+      "src/pde_fluid_phi/utils/enhanced_device.py",
+      "src/pde_fluid_phi/utils/enhanced_error_handling.py",
+      "src/pde_fluid_phi/utils/io_utils.py",
+      "src/pde_fluid_phi/utils/logging_utils.py",
+      "src/pde_fluid_phi/utils/performance_monitor.py",
+      "src/pde_fluid_phi/utils/security.py",
+      "src/pde_fluid_phi/utils/validation.py"
+    ],
+    "file_hashes": {
+      "src/pde_fluid_phi/__init__.py": "01106834e84eca08697fc57fc918f51e9fa7151f3fc526689654fb9fc9110010",
+      "src/pde_fluid_phi/cli/__init__.py": "06830dfb07e8b4936795a0d7db4a09d4fa5de87b3b3d687eaf81245390ee339c",
+      "src/pde_fluid_phi/cli/benchmark.py": "6ce6f02c713635e81647ef3a6f05f05b8517b7583fd5b91b53b3b52e9deaf464",
+      "src/pde_fluid_phi/cli/evaluate.py": "e5809937e6fd9b3c692eca6043c6fdf59453afcdd0b821a2970614c82b9e6611",
+      "src/pde_fluid_phi/cli/generate.py": "55c0e4ac35c76e5090051786fbfaa6c1406dbb4460f75cecb8d2f12848dd78ed",
+      "src/pde_fluid_phi/cli/main.py": "f1c2f32fe0518045e6dcfabb4577abc4d38a5f27c94f364d2c2426d061bd83aa",
+      "src/pde_fluid_phi/cli/train.py": "f747e2a1be7e5b411f7a5b33df88c046ba3ad347bc81a8228d81363da9a77baf",
+      "src/pde_fluid_phi/data/__init__.py": "9a899911ac408adfe91315f701f52a7592fd71d8df689e5801545d68f2113cf1",
+      "src/pde_fluid_phi/data/spectral_decomposition.py": "ba9334a1659f2c3d121f9ff4f36699051af9f5c3d569e463227263c858d52b25",
+      "src/pde_fluid_phi/data/turbulence_dataset.py": "f0434af0962f8c739442a7a966ab658d336994f0beaee5b33de623cdfebe032f",
+      "src/pde_fluid_phi/evaluation/__init__.py": "a03cb9de818974f243429640519c7a709332747803e690608acc18352b548455",
+      "src/pde_fluid_phi/evaluation/metrics.py": "17c5354efba0267ecf4e5dcedf2ba38f9e283f26167c6195513659f5dc60ef66",
+      "src/pde_fluid_phi/kernels/__init__.py": "f742d0b42ec9a22c6cc32d4c60f19df57fe4a8bac2acdaf640c458ff04ed551c",
+      "src/pde_fluid_phi/kernels/spectral_kernels.py": "45212cd145f42d898c041febcce1f50f3f267a44b59ff5e9c5be4d5353a4c5a1",
+      "src/pde_fluid_phi/models/__init__.py": "a828fae41706873001e9a662ac8e0e3c62ba62acaef96eeeb2bc96daabe56aa2",
+      "src/pde_fluid_phi/models/fno3d.py": "3846fcf1f19ed25dcf5c09a60ab5bd4d34578efa5940bb76adbd46e1fb4061bd",
+      "src/pde_fluid_phi/models/multiscale_fno.py": "a8f623958084248138b67fbd142b60b4ef9d1d0b5d7342f2a37c55e271df24d5",
+      "src/pde_fluid_phi/models/rfno.py": "47b2fffd81260b23ae1a2b5231589c098146d375d6331966bc0686941f3dc075",
+      "src/pde_fluid_phi/operators/__init__.py": "db4b70a3641164fdb249c793d20da6e9aa8de0c45dd27e9b362c1f8fac1579e5",
+      "src/pde_fluid_phi/operators/rational_fourier.py": "6d8aa03ba29b10e2ed3fa0d0790b43a17c1fec898854e62f89bc154224100f32",
+      "src/pde_fluid_phi/operators/spectral_layers.py": "e9576d3a6873cb8b18bd155c9dcf8267062c442c0d207e430fa977520740c5f6",
+      "src/pde_fluid_phi/operators/stability.py": "ad6104e25cc5b6bdaf4b8c6dbe9e0183a2bdbf27a299325f07cf17b692e6f93f",
+      "src/pde_fluid_phi/optimization/__init__.py": "89c3bcacd93f24b49c89892cc3917ea6436efa104f81b33d5e96f660ab869561",
+      "src/pde_fluid_phi/optimization/auto_scaling.py": "582bfd44a222eb61f16d7cc5f4fca93d1c2bf7a26d24dc74f2c5f38f93bf716a",
+      "src/pde_fluid_phi/optimization/caching.py": "5c36c7367dc6ceb7671524b217f5250bc508a65cfac2d2722c84592565c676b0",
+      "src/pde_fluid_phi/optimization/concurrent_processing.py": "0762ff3d3591d0c201ad6adec9c84d9dfd26e63d555a6216684da84310d02de1",
+      "src/pde_fluid_phi/optimization/distributed_computing.py": "0e6898bd64a1c557c0689f696744761cb1b9393ba2168967393087a1a08acfcc",
+      "src/pde_fluid_phi/optimization/distributed_training.py": "9fb766fb2b415a921b7cd106d3a8c31752f2924c1ff2378222cf43db0fa06087",
+      "src/pde_fluid_phi/optimization/memory_optimization.py": "6f526504c233cfab5365bb916f76481cef54bb469a0c68c0981a1e113274af64",
+      "src/pde_fluid_phi/optimization/performance_optimization.py": "75aebff165ccdaca9e9f5af43d7c4372ce3030a2f215bbb6839f0afc78af8077",
+      "src/pde_fluid_phi/training/__init__.py": "fa561883eba27eb166796666ddb5b05886877ee4374d1af7b0bef134eb7bd842",
+      "src/pde_fluid_phi/training/curriculum.py": "c782ec6b4c804666e15341180b0026295e218723de5ea5f034d793b477458e75",
+      "src/pde_fluid_phi/training/distributed.py": "aeac7adcba069a0a144ed47cf5c138c7b3079f30b06fee7c0903ebe96afaf317",
+      "src/pde_fluid_phi/training/losses.py": "984bbf7ae3cd37264a6caf5bf77505d985f4e005b24042308735da9ead2b4747",
+      "src/pde_fluid_phi/training/stability_trainer.py": "2b6eebb204f95175e9868b80294438fa21e438df0fd3d7bb5c3beed8f298a25e",
+      "src/pde_fluid_phi/utils/__init__.py": "39c022069b97d1814eb8a1dbe015c8bb7d9005aec15d2073654297ce84b178d3",
+      "src/pde_fluid_phi/utils/config_utils.py": "925f8999f8b136242973e0309d074cb6946a895bdb17660e9ea0d3e52fa9f271",
+      "src/pde_fluid_phi/utils/device_utils.py": "221a4d6aa5998afc2cc8db7cb86dd4b30f8dee8393948af0fac42580ae9ee509",
+      "src/pde_fluid_phi/utils/enhanced_config.py": "b37f0810035079c61100e3c115ab45ec9c9bc827a28dd2a5c7a6c6c32fa88452",
+      "src/pde_fluid_phi/utils/enhanced_device.py": "f26a7e6e945aa3fc2b26f3cdaf78551c0e49a0b46a2ae916961cfbcd9d842b19",
+      "src/pde_fluid_phi/utils/enhanced_error_handling.py": "91170e012a42bf0d419a1cd167aa0371d76064ceacdfaf31e91bd02923b96466",
+      "src/pde_fluid_phi/utils/enhanced_validation.py": "eaad56a9b83c75e73965359bedfc4e834d77771f032f60da9e55573de79b2534",
+      "src/pde_fluid_phi/utils/error_handling.py": "dc7617cae62b40983c04d54565ab9530a92a2491136c27646b2580182af8c22c",
+      "src/pde_fluid_phi/utils/exceptions.py": "eea8398cc32572527b8e26a9319058b26ea1f72b36b1c22d12b2adacca3498de",
+      "src/pde_fluid_phi/utils/io_utils.py": "f20fa0e8f381aa7a824f8f26c84081006e17217abebfff1225fa21da2f3d5899",
+      "src/pde_fluid_phi/utils/logging_utils.py": "7ffadd5b674b76d3f9dd40a58306505cdefa370b85e68936e014991a1a6e246a",
+      "src/pde_fluid_phi/utils/monitoring.py": "06dbf13264114b7b0f879fcb9524b8f135a5c536a0e2c169c31d2fca1ca36fc0",
+      "src/pde_fluid_phi/utils/performance_monitor.py": "c86f8100493aa5a6943c401a5494e00e74a4fa54a06e0cf204623d082984aa3a",
+      "src/pde_fluid_phi/utils/security.py": "b2ff98a536506f8cf603f4d43b7826e915c5fff980a6315b3dc4cfdb152c119a",
+      "src/pde_fluid_phi/utils/spectral_utils.py": "acbf20ac7a25eec5fec12b65428b45a3e34a775cfe22613a50cdec5c03c76e14",
+      "src/pde_fluid_phi/utils/validation.py": "f90dccaebc23d7e60b0727c69e5fa81764c3eb80913b5361707a36862da388f9"
+    }
+  },
+  "code_quality": {
+    "issues": [
+      {
+        "file": "src/pde_fluid_phi/cli/benchmark.py",
+        "line": 89,
+        "issue": "Dangerous eval/exec usage detected",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/cli/evaluate.py",
+        "line": 94,
+        "issue": "Dangerous eval/exec usage detected",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/models/multiscale_fno.py",
+        "line": 216,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/caching.py",
+        "line": 100,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/caching.py",
+        "line": 151,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/caching.py",
+        "line": 263,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/caching.py",
+        "line": 266,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/caching.py",
+        "line": 269,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/caching.py",
+        "line": 272,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/caching.py",
+        "line": 274,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/caching.py",
+        "line": 538,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/distributed_training.py",
+        "line": 287,
+        "issue": "Dangerous eval/exec usage detected",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/training/curriculum.py",
+        "line": 330,
+        "issue": "Dangerous eval/exec usage detected",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/training/stability_trainer.py",
+        "line": 244,
+        "issue": "Dangerous eval/exec usage detected",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/enhanced_device.py",
+        "line": 298,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/enhanced_device.py",
+        "line": 426,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/enhanced_device.py",
+        "line": 427,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/security.py",
+        "line": 611,
+        "issue": "Potential hardcoded credentials",
+        "severity": "high"
+      }
+    ],
+    "metrics": {
+      "total_lines": 22273,
+      "functions": 763,
+      "classes": 144,
+      "complexity_score": 0
+    }
+  },
+  "dependencies": {
+    "requirements_found": true,
+    "dependencies": [
+      "torch>=2.0.0",
+      "torchvision>=0.15.0",
+      "numpy>=1.21.0",
+      "scipy>=1.9.0",
+      "h5py>=3.7.0",
+      "netcdf4>=1.6.0",
+      "xarray>=2022.6.0",
+      "einops>=0.6.0",
+      "wandb>=0.13.0",
+      "tensorboard>=2.10.0",
+      "scikit-learn>=1.1.0",
+      "pandas>=1.5.0",
+      "mpi4py>=3.1.0",
+      "omegaconf>=2.2.0",
+      "hydra-core>=1.2.0",
+      "tqdm>=4.64.0",
+      "rich>=12.5.0",
+      "pydantic>=1.10.0",
+      "pytest>=7.0.0",
+      "pytest-cov>=4.0.0",
+      "black>=22.0.0",
+      "isort>=5.10.0",
+      "flake8>=5.0.0"
+    ],
+    "potential_issues": [],
+    "pyproject_found": true
+  },
+  "configuration": {
+    "config_files": [
+      "deployment/production_config.yaml",
+      "deployment/production_ready_deployment.yaml",
+      "deployment/kubernetes/deployment.yaml",
+      "deployment/kubernetes/namespace.yaml",
+      "deployment/kubernetes/storage.yaml",
+      "deployment/kubernetes/training-job.yaml",
+      "deployment/monitoring/servicemonitor.yaml",
+      "deployment/helm/pde-fluid-phi/Chart.yaml",
+      "deployment/helm/pde-fluid-phi/values.yaml",
+      "docker-compose.yml",
+      "deployment/docker-compose.prod.yml",
+      "benchmark_results_mock.json",
+      "demo_results.json",
+      "quality_gates_report.json",
+      "security_report.json",
+      "validation_report.json",
+      "quality_reports/quality_report_20250816_150543.json",
+      "quality_reports/quality_summary_20250816_150543.json",
+      "pyproject.toml"
+    ],
+    "security_issues": [
+      {
+        "file": "docker-compose.yml",
+        "issue": "Potential hardcoded secrets detected"
+      },
+      {
+        "file": "deployment/docker-compose.prod.yml",
+        "issue": "Potential hardcoded secrets detected"
+      }
+    ],
+    "best_practices": [
+      "\u2713 Using pyproject.toml for dependency management",
+      "\u2713 .gitignore file present"
+    ]
+  },
+  "security_score": 0,
+  "recommendation": "Significant security improvements required"
+}
