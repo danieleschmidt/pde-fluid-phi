@@ -285,15 +285,19 @@ class RationalFourierOperator3D(nn.Module):
         self, 
         initial_condition: torch.Tensor, 
         steps: int,
-        return_trajectory: bool = False
+        return_trajectory: bool = False,
+        adaptive_timestep: bool = True,
+        max_cfl: float = 0.5
     ) -> Union[torch.Tensor, torch.Tensor]:
         """
-        Perform multi-step rollout prediction.
+        Perform multi-step rollout prediction with adaptive timestepping.
         
         Args:
             initial_condition: Initial flow state [batch, channels, h, w, d]
             steps: Number of time steps to predict
             return_trajectory: Whether to return full trajectory
+            adaptive_timestep: Use adaptive CFL-based timestep control
+            max_cfl: Maximum CFL number for stability
             
         Returns:
             Final state or full trajectory
@@ -302,21 +306,110 @@ class RationalFourierOperator3D(nn.Module):
         
         if return_trajectory:
             trajectory = [current_state.clone()]
+            
+        # Adaptive timestep variables
+        if adaptive_timestep:
+            dt = self._compute_adaptive_timestep(current_state, max_cfl)
+            actual_steps = 0
+            total_time = 0.0
+            target_time = steps * dt  # Assume unit timestep initially
         
         for step in range(steps):
+            if adaptive_timestep:
+                # Compute local CFL-based timestep
+                local_dt = self._compute_adaptive_timestep(current_state, max_cfl)
+                dt = min(dt, local_dt)  # Conservative approach
+                
+                # Check if we've reached target time
+                if total_time >= target_time:
+                    break
+                    
+                # Adjust timestep to hit target exactly
+                if total_time + dt > target_time:
+                    dt = target_time - total_time
+            
             with torch.no_grad() if step > 0 else torch.enable_grad():
-                current_state = self.forward(current_state)
+                # Multi-stage Runge-Kutta for better stability
+                if adaptive_timestep and step > 0:
+                    current_state = self._rk4_step(current_state, dt)
+                else:
+                    current_state = self.forward(current_state)
                 
                 # Apply stability constraints during rollout
                 current_state = self.stability_constraints.apply(current_state)
                 
+                # Spectral dealiasing to prevent aliasing instabilities
+                current_state = self._apply_dealiasing(current_state)
+                
                 if return_trajectory:
                     trajectory.append(current_state.clone())
+                    
+                if adaptive_timestep:
+                    total_time += dt
+                    actual_steps += 1
         
         if return_trajectory:
             return torch.stack(trajectory, dim=1)  # [batch, time, channels, h, w, d]
         else:
             return current_state
+    
+    def _compute_adaptive_timestep(self, u: torch.Tensor, max_cfl: float) -> float:
+        """Compute adaptive timestep based on CFL condition."""
+        with torch.no_grad():
+            # Compute velocity magnitude
+            u_mag = torch.sqrt(torch.sum(u**2, dim=1, keepdim=True))
+            
+            # Maximum velocity
+            u_max = torch.max(u_mag).item()
+            
+            # Grid spacing (assume uniform)
+            dx = 1.0 / u.shape[-3]  # Normalized grid
+            
+            # CFL-based timestep
+            dt_cfl = max_cfl * dx / (u_max + 1e-8)
+            
+            return float(dt_cfl)
+    
+    def _rk4_step(self, u: torch.Tensor, dt: float) -> torch.Tensor:
+        """4th order Runge-Kutta timestep for improved stability."""
+        # k1 = f(u)
+        k1 = self.forward(u)
+        
+        # k2 = f(u + dt/2 * k1)
+        k2 = self.forward(u + 0.5 * dt * k1)
+        
+        # k3 = f(u + dt/2 * k2)  
+        k3 = self.forward(u + 0.5 * dt * k2)
+        
+        # k4 = f(u + dt * k3)
+        k4 = self.forward(u + dt * k3)
+        
+        # Combined update
+        u_new = u + (dt / 6.0) * (k1 + 2*k2 + 2*k3 + k4)
+        
+        return u_new
+    
+    def _apply_dealiasing(self, u: torch.Tensor) -> torch.Tensor:
+        """Apply 2/3 dealiasing rule to prevent aliasing instabilities."""
+        with torch.no_grad():
+            u_ft = torch.fft.rfftn(u, dim=[-3, -2, -1])
+            
+            # Apply 2/3 rule: zero out highest 1/3 of modes
+            *_, nx, ny, nz_half = u_ft.shape
+            
+            # Dealiasing masks
+            kx_max = int(2 * nx // 3)
+            ky_max = int(2 * ny // 3)
+            kz_max = int(2 * nz_half // 3)
+            
+            # Zero high-frequency modes
+            u_ft[:, :, kx_max:, :, :] = 0
+            u_ft[:, :, :, ky_max:, :] = 0
+            u_ft[:, :, :, :, kz_max:] = 0
+            
+            u_dealiased = torch.fft.irfftn(u_ft, s=u.shape[-3:], dim=[-3, -2, -1])
+            
+            return u_dealiased
     
     def get_stability_monitor(self) -> dict:
         """Return stability metrics for monitoring."""

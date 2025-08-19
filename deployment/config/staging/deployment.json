@@ -1,0 +1,52 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "pde-fluid-phi-staging",
+    "labels": {
+      "app": "pde-fluid-phi",
+      "environment": "staging"
+    }
+  },
+  "spec": {
+    "replicas": 2,
+    "selector": {
+      "matchLabels": {
+        "app": "pde-fluid-phi",
+        "environment": "staging"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "pde-fluid-phi",
+          "environment": "staging"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "pde-fluid-phi",
+            "image": "pde-fluid-phi:staging-latest",
+            "resources": {
+              "limits": {
+                "cpu": "4000m",
+                "memory": "16Gi"
+              }
+            },
+            "env": [
+              {
+                "name": "ENVIRONMENT",
+                "value": "staging"
+              },
+              {
+                "name": "GPU_ENABLED",
+                "value": "True"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
