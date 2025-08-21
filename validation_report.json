@@ -1,6 +1,6 @@
 {
-  "validation_timestamp": 1755356612.843367,
-  "total_validation_time_seconds": 0.34811854362487793,
+  "validation_timestamp": 1755716752.6864755,
+  "total_validation_time_seconds": 0.4786560535430908,
   "overall_score": "4/5",
   "overall_percentage": "80.0%",
   "suite_results": {
@@ -12,18 +12,18 @@
   },
   "detailed_results": {
     "code_quality": {
-      "total_files": 74,
-      "total_lines": 32614,
+      "total_files": 92,
+      "total_lines": 45583,
       "syntax_errors": 0,
-      "avg_lines_per_file": 440.72972972972974
+      "avg_lines_per_file": 495.4673913043478
     },
     "performance": {
-      "test_duration_seconds": 0.009412288665771484,
+      "test_duration_seconds": 0.009521007537841797,
       "meets_target": true
     },
     "security": {
-      "files_scanned": 74,
-      "security_issues": 13
+      "files_scanned": 92,
+      "security_issues": 24
     },
     "deployment": {
       "required_files": 3,
