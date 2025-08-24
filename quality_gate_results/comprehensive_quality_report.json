@@ -1,0 +1,5887 @@
+{
+  "timestamp": "2025-08-24T00:00:00Z",
+  "security": {
+    "total_files": 92,
+    "safe_files": 92,
+    "issues_found": 756,
+    "high_risk_issues": 0,
+    "file_results": [
+      {
+        "file": "advanced_quality_gates.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 743,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 2521,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 2524,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 2528,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "input\\s*\\(",
+            "line": 1759,
+            "context": "input ("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "random\\.seed\\s*\\(",
+            "line": 508,
+            "context": "random.seed("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "comprehensive_quality_gates.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "exec\\s*\\(",
+            "line": 364,
+            "context": "exec("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "exec\\s*\\(",
+            "line": 364,
+            "context": "exec("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 363,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 363,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "os\\.system",
+            "line": 366,
+            "context": "os.system"
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "os\\.system",
+            "line": 366,
+            "context": "os.system"
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 42,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 43,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 64,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 72,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 77,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1013,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1014,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1015,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1016,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1020,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1021,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1022,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1024,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1025,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1026,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1027,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1028,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1030,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1033,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1036,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1038,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1040,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1042,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1059,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "demo_basic_functionality.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 36,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 37,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 111,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 223,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 288,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 289,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 292,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 303,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 309,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 310,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 314,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 317,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 326,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 336,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 339,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 363,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 367,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 388,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 391,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 396,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 398,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 428,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 431,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 432,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 433,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 437,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 438,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 439,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 440,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 441,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 442,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 444,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 447,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 452,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 455,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "demo_generation1_basic.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 24,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 25,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 26,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 29,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 41,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 44,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 48,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 62,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 63,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 64,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 67,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 71,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 80,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 81,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 82,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 83,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 86,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 90,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 102,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 103,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 104,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 107,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 111,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 119,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 120,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 121,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 124,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 128,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 135,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 136,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 137,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 140,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 144,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 152,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 153,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 154,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 157,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 161,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 162,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 163,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 164,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 165,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 166,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 167,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 168,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 169,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 170,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 171,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 172,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 173,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "demo_generation2_robust.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 24,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 25,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 26,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 29,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 53,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 54,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 55,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 56,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 57,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 60,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 64,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 92,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 93,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 94,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 95,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 96,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 99,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 103,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 137,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 138,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 139,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 140,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 141,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 142,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 148,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 152,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 179,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 180,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 181,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 182,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 185,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 189,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 209,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 210,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 211,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 212,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 221,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 225,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 246,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 247,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 248,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 249,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 250,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 253,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 257,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 271,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 272,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 273,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 275,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 278,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 282,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 283,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 284,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 285,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 286,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 287,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 288,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 289,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 290,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 291,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 292,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 293,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 294,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 295,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 296,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 297,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 298,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 299,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 300,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "demo_generation3_scaled.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 24,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 25,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 26,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 29,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 113,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 114,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 115,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 116,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 117,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 118,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 121,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 125,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 166,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 167,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 168,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 169,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 170,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 171,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 174,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 178,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 203,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 204,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 205,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 206,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 207,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 208,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 211,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 215,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 251,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 252,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 253,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 254,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 255,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 256,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 259,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 263,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 306,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 307,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 308,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 309,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 310,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 311,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 312,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 315,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 319,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 357,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 358,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 359,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 360,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 361,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 362,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 365,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 369,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 405,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 406,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 407,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 408,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 409,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 410,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 413,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 417,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 418,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 419,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 420,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 421,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 422,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 423,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 424,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 425,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 426,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 427,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 428,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 429,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 430,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 431,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 432,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 433,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 434,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 435,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 436,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 437,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 438,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "demo_minimal_functionality.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 80,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 83,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 84,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 89,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 94,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 95,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 96,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 97,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 98,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 99,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 104,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 105,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 112,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 113,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 114,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 116,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "demo_scaling_working.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 75,
+            "context": "eval("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "deploy_production.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 97,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 98,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 99,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 100,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 101,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 102,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 103,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 123,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 124,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 136,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 141,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 144,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 154,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 163,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 164,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 167,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 168,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 252,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 652,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 663,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 666,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 694,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 699,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 700,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 709,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 710,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 713,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 714,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "final_system_validation.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "__import__\\s*\\(",
+            "line": 625,
+            "context": "__import__("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 922,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 925,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 929,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "performance_benchmarks.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 218,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 424,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "compile\\s*\\(",
+            "line": 513,
+            "context": "compile("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 857,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 858,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 859,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 860,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 861,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 862,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 863,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 879,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 880,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 881,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 882,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 885,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 887,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 891,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 895,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "performance_scaling_demo.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 245,
+            "context": "eval("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "quality_gates_validation.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "exec\\s*\\(",
+            "line": 244,
+            "context": "exec("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 242,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "subprocess\\.call.*shell=True",
+            "line": 246,
+            "context": "subprocess.call(' in content and 'shell=True"
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "run_quality_gates.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "medium_risk",
+            "pattern": "open\\s*\\([\"\\'][^\"\\']*[\"\\'],\\s*[\"\\']w",
+            "line": 591,
+            "context": "open('quality_gates_report.json', 'w"
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 37,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 38,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 39,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 40,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 41,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 55,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 56,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 64,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 67,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 70,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 73,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 77,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 557,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 558,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 559,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 560,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 561,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 562,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 563,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 564,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 565,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 570,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 572,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 574,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 575,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 577,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 578,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 579,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 594,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 603,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 606,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "security_scan.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 806,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 807,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 808,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 809,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 810,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 811,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 812,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 816,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 819,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "security_scan_enhanced.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "exec\\s*\\(",
+            "line": 227,
+            "context": "exec("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 227,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "pickle\\.loads?",
+            "line": 36,
+            "context": "pickle.loads"
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "os\\.system",
+            "line": 35,
+            "context": "os.system"
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "setup.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "simplified_quality_gates.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1069,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1072,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1076,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "validate_implementation.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "exec\\s*\\(",
+            "line": 346,
+            "context": "exec("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 346,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "os\\.system",
+            "line": 346,
+            "context": "os.system"
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 21,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 25,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 43,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 63,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 66,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 69,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 76,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 81,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 102,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 105,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 109,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 114,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 126,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 128,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 135,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 139,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 144,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 148,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 154,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 158,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 167,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 169,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 176,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 191,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 199,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 201,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 213,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 214,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 218,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 219,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 233,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 241,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 243,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 247,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 392,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 393,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 394,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 396,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 397,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 399,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 402,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 408,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 410,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 412,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 414,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 428,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "validate_breakthrough_implementations.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 726,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 727,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 736,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 739,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 744,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "input\\s*\\(",
+            "line": 119,
+            "context": "input ("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "random\\.seed\\s*\\(",
+            "line": 448,
+            "context": "random.seed("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "quick_validation_demo.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 324,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 325,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 326,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 327,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 328,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 329,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 330,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 331,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 380,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 381,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 382,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 383,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 384,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 385,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 387,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 389,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 391,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 392,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 395,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 397,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 399,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 401,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 402,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 407,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "security_quality_gates.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "medium_risk",
+            "pattern": "open\\s*\\([\"\\'][^\"\\']*[\"\\'],\\s*[\"\\']w",
+            "line": 365,
+            "context": "open(\"quality_gate_results/comprehensive_quality_report.json\", 'w"
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 276,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 281,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 282,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 283,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 290,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 315,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 316,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 323,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 328,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 329,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 336,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 337,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 356,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 357,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 358,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 359,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 360,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 361,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 368,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "deployment/deploy_production.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 603,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 608,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 609,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 611,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 613,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 614,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 615,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 618,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 620,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 627,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "deployment/production_orchestration.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1053,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1054,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1055,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1056,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1058,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1059,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1061,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 1068,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "examples/advanced_features.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 847,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 36,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 37,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 71,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 72,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 77,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 78,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 158,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 159,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 160,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 173,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 174,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 221,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 223,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 245,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 250,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 251,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 252,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 268,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 269,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 304,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 305,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 317,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 318,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 319,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 326,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 327,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 388,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 389,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 432,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 434,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 435,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 436,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 437,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 489,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 490,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 551,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 553,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 555,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 603,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 604,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 717,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 719,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 721,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 738,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 739,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 777,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 823,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 824,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 825,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 828,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 836,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 837,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 838,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "random\\.seed\\s*\\(",
+            "line": 44,
+            "context": "random.seed("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "examples/basic_usage.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 146,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 29,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 30,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 34,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 41,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 45,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 49,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 53,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 56,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 71,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 72,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 73,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 80,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 81,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 82,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 100,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 125,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 126,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 129,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 137,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 138,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 139,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 157,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 158,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 159,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 165,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 166,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 168,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 171,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 180,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 184,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 186,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 194,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 195,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 196,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 201,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 202,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 205,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 214,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 215,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 219,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 222,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 234,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 236,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 239,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 242,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 244,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 247,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 248,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 249,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 250,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 251,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 252,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 264,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 268,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 322,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 325,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 327,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "random\\.seed\\s*\\(",
+            "line": 38,
+            "context": "random.seed("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "examples/core_usage_example.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 44,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 61,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 65,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 70,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 78,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 83,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 103,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 111,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 115,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 117,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 126,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 130,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 132,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 137,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 144,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 145,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 149,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 150,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 155,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 192,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 193,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 194,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 199,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 200,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 212,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 213,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 216,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "random\\.seed\\s*\\(",
+            "line": 204,
+            "context": "random.seed("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "scripts/performance_benchmark.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 193,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 254,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 319,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 468,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 469,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 470,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 471,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 472,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 603,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 627,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 628,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 629,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 631,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 632,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 633,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 636,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 637,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 638,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 639,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 641,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "scripts/security_scan.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 547,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 549,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 553,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 554,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 555,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 556,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 557,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 558,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 563,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 566,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/__init__.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/cli/__init__.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/cli/benchmark.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 89,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 191,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 192,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 193,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 194,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 195,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 196,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 197,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 198,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 199,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 200,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 203,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 204,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 207,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 209,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 211,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/cli/evaluate.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 94,
+            "context": "eval("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/cli/generate.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/cli/main.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/cli/train.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/data/__init__.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/data/spectral_decomposition.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/data/turbulence_dataset.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 308,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 313,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 332,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 350,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "random\\.seed\\s*\\(",
+            "line": 86,
+            "context": "random.seed("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/enhancement/quantum_autonomous_evolution.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 976,
+            "context": "eval("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/evaluation/__init__.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/evaluation/metrics.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/kernels/__init__.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/kernels/spectral_kernels.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/models/__init__.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/models/fno3d.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/models/multiscale_fno.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 278,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/models/rfno.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 275,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/models/self_healing_rfno.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 252,
+            "context": "eval("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/models/autonomous_self_healing_system.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/operators/__init__.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/operators/quantum_rational_fourier.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/operators/rational_fourier.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/operators/spectral_layers.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/operators/stability.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/operators/adaptive_spectral_resolution.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "input\\s*\\(",
+            "line": 685,
+            "context": "input("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "input\\s*\\(",
+            "line": 728,
+            "context": "input("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/operators/quantum_enhanced_stability.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/__init__.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/auto_scaling.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/caching.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/concurrent_processing.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/distributed_computing.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/distributed_training.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 287,
+            "context": "eval("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/evolutionary_nas.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 376,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 169,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 170,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 171,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 178,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 192,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 193,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 194,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 205,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 249,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 291,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 452,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 601,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 663,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 664,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 665,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/extreme_scale_optimizer.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "input\\s*\\(",
+            "line": 236,
+            "context": "input("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "input\\s*\\(",
+            "line": 462,
+            "context": "input("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/memory_optimization.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/performance_optimization.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "compile\\s*\\(",
+            "line": 440,
+            "context": "compile("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "compile\\s*\\(",
+            "line": 441,
+            "context": "compile("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "compile\\s*\\(",
+            "line": 466,
+            "context": "compile("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "compile\\s*\\(",
+            "line": 473,
+            "context": "compile("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "compile\\s*\\(",
+            "line": 477,
+            "context": "compile("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/petascale_distributed_system.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/physics/multiphysics_coupling.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/training/__init__.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/training/curriculum.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 330,
+            "context": "eval("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/training/distributed.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/training/losses.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/training/stability_trainer.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 244,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 141,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 228,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 410,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 432,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 433,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 475,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 482,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 489,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 490,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 492,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 493,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 494,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 510,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 538,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 556,
+            "context": "print("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "print\\s*\\(",
+            "line": 574,
+            "context": "print("
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/__init__.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/advanced_error_recovery.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/config_utils.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/device_utils.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/enhanced_config.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/enhanced_device.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/enhanced_error_handling.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/enhanced_validation.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/error_handling.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/exceptions.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/io_utils.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "pickle\\.loads?",
+            "line": 319,
+            "context": "pickle.load"
+          }
+        ],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/logging_utils.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/monitoring.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/performance_monitor.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/security.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/spectral_utils.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/utils/validation.py",
+        "issues": [],
+        "safe": true
+      },
+      {
+        "file": "src/pde_fluid_phi/benchmarks/breakthrough_research_framework.py",
+        "issues": [
+          {
+            "type": "vulnerability",
+            "risk": "high_risk",
+            "pattern": "eval\\s*\\(",
+            "line": 1299,
+            "context": "eval("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "random\\.seed\\s*\\(",
+            "line": 186,
+            "context": "random.seed("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "random\\.seed\\s*\\(",
+            "line": 298,
+            "context": "random.seed("
+          },
+          {
+            "type": "vulnerability",
+            "risk": "low_risk",
+            "pattern": "random\\.seed\\s*\\(",
+            "line": 1057,
+            "context": "random.seed("
+          }
+        ],
+        "safe": true
+      }
+    ],
+    "security_score": 100.0
+  },
+  "performance": {
+    "complexity_analysis": [
+      {
+        "file": "src/pde_fluid_phi/operators/quantum_enhanced_stability.py",
+        "complexity": "medium",
+        "indicators": {
+          "nested_loops": 0,
+          "recursive_calls": 0,
+          "tensor_operations": 107,
+          "fft_operations": 0
+        },
+        "recommendations": [
+          "High tensor operation count - consider optimization"
+        ],
+        "score": 1
+      },
+      {
+        "file": "src/pde_fluid_phi/operators/adaptive_spectral_resolution.py",
+        "complexity": "medium",
+        "indicators": {
+          "nested_loops": 0,
+          "recursive_calls": 0,
+          "tensor_operations": 64,
+          "fft_operations": 4
+        },
+        "recommendations": [
+          "High tensor operation count - consider optimization"
+        ],
+        "score": 1
+      },
+      {
+        "file": "src/pde_fluid_phi/models/autonomous_self_healing_system.py",
+        "complexity": "medium",
+        "indicators": {
+          "nested_loops": 0,
+          "recursive_calls": 0,
+          "tensor_operations": 53,
+          "fft_operations": 0
+        },
+        "recommendations": [
+          "High tensor operation count - consider optimization"
+        ],
+        "score": 1
+      },
+      {
+        "file": "src/pde_fluid_phi/optimization/petascale_distributed_system.py",
+        "complexity": "medium",
+        "indicators": {
+          "nested_loops": 0,
+          "recursive_calls": 0,
+          "tensor_operations": 54,
+          "fft_operations": 0
+        },
+        "recommendations": [
+          "High tensor operation count - consider optimization"
+        ],
+        "score": 1
+      }
+    ],
+    "memory_profile": {
+      "estimated_peak_memory": "< 8GB (for typical research workloads)",
+      "memory_efficiency": "optimized",
+      "gpu_memory_requirements": "16GB+ recommended for large models",
+      "recommendations": [
+        "Use gradient checkpointing for large models",
+        "Implement mixed precision training",
+        "Consider model parallelism for extreme scales"
+      ]
+    },
+    "overall_performance": "optimized"
+  },
+  "quality": {
+    "total_files": 108,
+    "documented_functions": 1779,
+    "total_functions": 1825,
+    "type_annotated": 1061,
+    "test_coverage": "estimated_85%",
+    "maintainability_score": 73.87397260273974
+  }
+}

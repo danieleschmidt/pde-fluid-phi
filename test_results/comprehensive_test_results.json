@@ -1,0 +1,289 @@
+{
+  "priority_tests": {
+    "summary": {
+      "total_tests": 6,
+      "passed_tests": 6,
+      "failed_tests": 0,
+      "success_rate": 1.0,
+      "total_duration": 0.0005824565887451172
+    },
+    "results": [
+      "<__main__.TestResult object at 0x7f2bdd406ab0>",
+      "<__main__.TestResult object at 0x7f2bdd406b70>",
+      "<__main__.TestResult object at 0x7f2bdd406c00>",
+      "<__main__.TestResult object at 0x7f2bdd406bd0>",
+      "<__main__.TestResult object at 0x7f2bdd406b10>",
+      "<__main__.TestResult object at 0x7f2bdd406c90>"
+    ],
+    "timestamp": "2025-08-24 22:15:53"
+  },
+  "comprehensive_tests": {
+    "summary": {
+      "total_tests": 39,
+      "passed_tests": 22,
+      "failed_tests": 17,
+      "total_duration": 0.6605372428894043,
+      "success_rate": 0.5641025641025641
+    },
+    "test_results": [
+      {
+        "name": "comprehensive_test_runner.py",
+        "passed": true,
+        "duration": 0.010073661804199219,
+        "error": null
+      },
+      {
+        "name": "test_basic_functionality.py",
+        "passed": false,
+        "duration": 0.0028734207153320312,
+        "error": "ModuleNotFoundError: No module named 'torch' (Missing dependencies - this is expected in testing environment)"
+      },
+      {
+        "name": "test_basic_import.py",
+        "passed": true,
+        "duration": 0.0008182525634765625,
+        "error": null
+      },
+      {
+        "name": "test_basic_import.py::test_cli_structure",
+        "passed": true,
+        "duration": 3.361701965332031e-05,
+        "error": null
+      },
+      {
+        "name": "test_basic_import.py::test_module_imports",
+        "passed": true,
+        "duration": 3.24249267578125e-05,
+        "error": null
+      },
+      {
+        "name": "test_basic_import.py::test_package_structure",
+        "passed": true,
+        "duration": 7.343292236328125e-05,
+        "error": null
+      },
+      {
+        "name": "test_basic_structure.py",
+        "passed": true,
+        "duration": 0.00495147705078125,
+        "error": null
+      },
+      {
+        "name": "test_basic_structure.py::test_configuration_files",
+        "passed": true,
+        "duration": 0.006547212600708008,
+        "error": null
+      },
+      {
+        "name": "test_basic_structure.py::test_deployment_config",
+        "passed": true,
+        "duration": 0.0001220703125,
+        "error": null
+      },
+      {
+        "name": "test_basic_structure.py::test_documentation",
+        "passed": true,
+        "duration": 0.00039005279541015625,
+        "error": null
+      },
+      {
+        "name": "test_basic_structure.py::test_import_structure",
+        "passed": true,
+        "duration": 0.0004763603210449219,
+        "error": null
+      },
+      {
+        "name": "test_basic_structure.py::test_project_structure",
+        "passed": true,
+        "duration": 0.0001857280731201172,
+        "error": null
+      },
+      {
+        "name": "test_basic_structure.py::test_python_syntax",
+        "passed": true,
+        "duration": 0.5282549858093262,
+        "error": null
+      },
+      {
+        "name": "test_comprehensive_functionality.py",
+        "passed": true,
+        "duration": 0.00748133659362793,
+        "error": null
+      },
+      {
+        "name": "test_comprehensive_functionality.py::test_cli_accessibility",
+        "passed": false,
+        "duration": 0.006790876388549805,
+        "error": "Test function returned False"
+      },
+      {
+        "name": "test_comprehensive_functionality.py::test_core_functionality",
+        "passed": false,
+        "duration": 0.0012135505676269531,
+        "error": "Test function returned False"
+      },
+      {
+        "name": "test_comprehensive_functionality.py::test_data_utilities",
+        "passed": false,
+        "duration": 0.0010514259338378906,
+        "error": "Test function returned False"
+      },
+      {
+        "name": "test_comprehensive_functionality.py::test_model_instantiation",
+        "passed": false,
+        "duration": 0.0003333091735839844,
+        "error": "Test function returned False"
+      },
+      {
+        "name": "test_comprehensive_functionality.py::test_rational_fourier_operator",
+        "passed": false,
+        "duration": 0.0002818107604980469,
+        "error": "Test function returned False"
+      },
+      {
+        "name": "test_comprehensive_functionality.py::test_robustness_features",
+        "passed": false,
+        "duration": 0.0011186599731445312,
+        "error": "Test function returned False"
+      },
+      {
+        "name": "test_comprehensive_functionality.py::test_training_utilities",
+        "passed": false,
+        "duration": 0.0009870529174804688,
+        "error": "Test function returned False"
+      },
+      {
+        "name": "test_implementation.py",
+        "passed": true,
+        "duration": 0.0026285648345947266,
+        "error": null
+      },
+      {
+        "name": "test_implementation.py::test_cli_commands",
+        "passed": true,
+        "duration": 0.005835771560668945,
+        "error": null
+      },
+      {
+        "name": "test_implementation.py::test_core_classes",
+        "passed": true,
+        "duration": 0.019478559494018555,
+        "error": null
+      },
+      {
+        "name": "test_implementation.py::test_implementation_depth",
+        "passed": true,
+        "duration": 0.0017175674438476562,
+        "error": null
+      },
+      {
+        "name": "test_implementation.py::test_import_statements",
+        "passed": true,
+        "duration": 0.0002980232238769531,
+        "error": null
+      },
+      {
+        "name": "test_imports.py",
+        "passed": true,
+        "duration": 0.0014052391052246094,
+        "error": null
+      },
+      {
+        "name": "test_imports.py::test_cli_structure",
+        "passed": false,
+        "duration": 0.0008609294891357422,
+        "error": "Test function returned False"
+      },
+      {
+        "name": "test_imports.py::test_file_structure",
+        "passed": true,
+        "duration": 0.00027823448181152344,
+        "error": null
+      },
+      {
+        "name": "test_imports.py::test_imports",
+        "passed": false,
+        "duration": 0.0007190704345703125,
+        "error": "Test function returned False"
+      },
+      {
+        "name": "test_structure_gen1.py",
+        "passed": true,
+        "duration": 0.0006318092346191406,
+        "error": null
+      },
+      {
+        "name": "test_structure_gen1.py::test_imports",
+        "passed": false,
+        "duration": 0.0007622241973876953,
+        "error": "Test function returned False"
+      },
+      {
+        "name": "test_workflow.py",
+        "passed": true,
+        "duration": 0.01948857307434082,
+        "error": null
+      },
+      {
+        "name": "tests/test_cli.py",
+        "passed": false,
+        "duration": 0.005074501037597656,
+        "error": "ModuleNotFoundError: No module named 'pytest' (Missing dependencies - this is expected in testing environment)"
+      },
+      {
+        "name": "tests/test_comprehensive.py",
+        "passed": false,
+        "duration": 0.0067179203033447266,
+        "error": "ModuleNotFoundError: No module named 'pytest' (Missing dependencies - this is expected in testing environment)"
+      },
+      {
+        "name": "tests/test_core_functionality.py",
+        "passed": false,
+        "duration": 0.005367279052734375,
+        "error": "ModuleNotFoundError: No module named 'pytest' (Missing dependencies - this is expected in testing environment)"
+      },
+      {
+        "name": "tests/test_integration.py",
+        "passed": false,
+        "duration": 0.004430294036865234,
+        "error": "ModuleNotFoundError: No module named 'pytest' (Missing dependencies - this is expected in testing environment)"
+      },
+      {
+        "name": "tests/test_operators.py",
+        "passed": false,
+        "duration": 0.004667997360229492,
+        "error": "ModuleNotFoundError: No module named 'pytest' (Missing dependencies - this is expected in testing environment)"
+      },
+      {
+        "name": "tests/test_spectral_utils.py",
+        "passed": false,
+        "duration": 0.0038576126098632812,
+        "error": "ModuleNotFoundError: No module named 'torch' (Missing dependencies - this is expected in testing environment)"
+      }
+    ],
+    "test_files": [
+      "comprehensive_test_runner.py",
+      "test_basic_functionality.py",
+      "test_basic_import.py",
+      "test_basic_structure.py",
+      "test_comprehensive_functionality.py",
+      "test_implementation.py",
+      "test_imports.py",
+      "test_structure_gen1.py",
+      "test_workflow.py",
+      "tests/test_cli.py",
+      "tests/test_comprehensive.py",
+      "tests/test_core_functionality.py",
+      "tests/test_integration.py",
+      "tests/test_operators.py",
+      "tests/test_spectral_utils.py"
+    ],
+    "timestamp": "2025-08-24 22:15:54"
+  },
+  "overall_summary": {
+    "priority_success_rate": 1.0,
+    "comprehensive_success_rate": 0.5641025641025641,
+    "total_duration": 0.6611196994781494,
+    "timestamp": "2025-08-24 22:15:54"
+  }
+}

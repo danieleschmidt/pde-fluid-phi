@@ -1,0 +1,18 @@
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "neural-operator-service"
+  namespace: "terragon-research"
+spec:
+  selector:
+    app: "neural-operator"
+  ports:
+    -
+      name: "dist-train"
+      port: 29500
+      targetPort: 29500
+    -
+      name: "jupyter"
+      port: 8888
+      targetPort: 8888
+  type: "ClusterIP"

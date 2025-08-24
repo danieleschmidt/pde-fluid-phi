@@ -1,0 +1,37 @@
+{
+  "dashboard": {
+    "title": "Neural Operator Training Metrics",
+    "panels": [
+      {
+        "title": "Training Loss",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "training_loss",
+            "legendFormat": "MSE Loss"
+          }
+        ]
+      },
+      {
+        "title": "GPU Utilization",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "gpu_utilization_percent",
+            "legendFormat": "GPU {{gpu}}"
+          }
+        ]
+      },
+      {
+        "title": "Memory Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "gpu_memory_used_bytes",
+            "legendFormat": "GPU Memory"
+          }
+        ]
+      }
+    ]
+  }
+}

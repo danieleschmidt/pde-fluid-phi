@@ -1,0 +1,67 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "neural-operator-training"
+  namespace: "terragon-research"
+  labels:
+    app: "neural-operator"
+    component: "training"
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: "neural-operator"
+  template:
+    metadata:
+      labels:
+        app: "neural-operator"
+    spec:
+      containers:
+        -
+          name: "neural-operator"
+          image: "terragon/pde-fluid-phi:latest"
+          resources:
+            requests:
+              nvidia.com/gpu: 1
+              memory: "32Gi"
+              cpu: "8"
+            limits:
+              nvidia.com/gpu: 1
+              memory: "64Gi"
+              cpu: "16"
+          env:
+            -
+              name: "CUDA_VISIBLE_DEVICES"
+              value: "0"
+            -
+              name: "NCCL_DEBUG"
+              value: "INFO"
+            -
+              name: "MASTER_ADDR"
+              value: "neural-operator-training-0"
+            -
+              name: "MASTER_PORT"
+              value: "29500"
+          volumeMounts:
+            -
+              name: "data-volume"
+              mountPath: "/app/data"
+            -
+              name: "checkpoint-volume"
+              mountPath: "/app/checkpoints"
+          ports:
+            -
+              containerPort: 29500
+              name: "dist-train"
+            -
+              containerPort: 8888
+              name: "jupyter"
+      volumes:
+        -
+          name: "data-volume"
+          persistentVolumeClaim:
+            claimName: "neural-operator-data"
+        -
+          name: "checkpoint-volume"
+          persistentVolumeClaim:
+            claimName: "neural-operator-checkpoints"
