@@ -1,0 +1,37 @@
+{
+  "deployment_report": {
+    "timestamp": "2025-08-27T15:23:49.897397",
+    "environments": {
+      "development": {
+        "deployment_id": "deploy_development_1.0.0_20250827_152341",
+        "status": "success",
+        "duration": 2.730695,
+        "health_score": 100.0,
+        "artifacts_count": 5,
+        "rollback_reason": null
+      },
+      "staging": {
+        "deployment_id": "deploy_staging_1.0.0_20250827_152344",
+        "status": "success",
+        "duration": 2.888086,
+        "health_score": 100.0,
+        "artifacts_count": 5,
+        "rollback_reason": null
+      },
+      "production": {
+        "deployment_id": "deploy_production_1.0.0_20250827_152346",
+        "status": "success",
+        "duration": 2.925515,
+        "health_score": 100.0,
+        "artifacts_count": 5,
+        "rollback_reason": null
+      }
+    },
+    "summary": {
+      "total_environments": 3,
+      "successful_deployments": 3,
+      "failed_deployments": 0,
+      "rolled_back_deployments": 0
+    }
+  }
+}

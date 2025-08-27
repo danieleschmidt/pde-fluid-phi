@@ -1,0 +1,70 @@
+{
+  "environments": {
+    "development": {
+      "region": "us-east-1",
+      "instance_type": "t3.micro",
+      "min_instances": 1,
+      "max_instances": 2,
+      "target_cpu": 70.0,
+      "health_check_path": "/health",
+      "deployment_strategy": "rolling",
+      "rollback_threshold": 10.0,
+      "monitoring_enabled": true,
+      "security_scanning": true,
+      "compliance_checks": false
+    },
+    "staging": {
+      "region": "us-east-1",
+      "instance_type": "t3.small",
+      "min_instances": 2,
+      "max_instances": 4,
+      "target_cpu": 70.0,
+      "health_check_path": "/health",
+      "deployment_strategy": "blue-green",
+      "rollback_threshold": 5.0,
+      "monitoring_enabled": true,
+      "security_scanning": true,
+      "compliance_checks": true
+    },
+    "production": {
+      "region": "us-east-1",
+      "instance_type": "t3.medium",
+      "min_instances": 3,
+      "max_instances": 10,
+      "target_cpu": 80.0,
+      "health_check_path": "/health",
+      "deployment_strategy": "blue-green",
+      "rollback_threshold": 2.0,
+      "monitoring_enabled": true,
+      "security_scanning": true,
+      "compliance_checks": true
+    }
+  },
+  "global_settings": {
+    "multi_region_enabled": true,
+    "regions": [
+      "us-east-1",
+      "us-west-2",
+      "eu-west-1",
+      "ap-southeast-1"
+    ],
+    "compliance_standards": [
+      "GDPR",
+      "CCPA",
+      "SOC2"
+    ],
+    "security_standards": [
+      "OWASP",
+      "CIS"
+    ],
+    "monitoring_retention_days": 90,
+    "backup_retention_days": 30
+  },
+  "deployment_gates": {
+    "security_scan_required": true,
+    "performance_test_required": true,
+    "compliance_check_required": true,
+    "manual_approval_required": true,
+    "rollback_on_failure": true
+  }
+}

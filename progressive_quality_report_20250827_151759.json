@@ -1,0 +1,82 @@
+{
+  "progressive_quality_gates_report": {
+    "timestamp": "2025-08-27T15:17:59.730350",
+    "total_execution_time": 0.6989400386810303,
+    "project_info": {
+      "type": "modern_python",
+      "has_tests": true,
+      "has_requirements": true,
+      "is_ml_project": true
+    },
+    "final_generation": "Gen1",
+    "gates_executed": 5,
+    "overall_success": 0.4,
+    "detailed_results": [
+      {
+        "name": "basic_structure",
+        "generation": "Gen1",
+        "passed": true,
+        "score": 1.0,
+        "execution_time": 0.001018524169921875,
+        "details": {
+          "missing_files": [],
+          "essential_files": [
+            "pyproject.toml",
+            "src/",
+            "README.md"
+          ]
+        },
+        "error": null
+      },
+      {
+        "name": "import_validation",
+        "generation": "Gen1",
+        "passed": false,
+        "score": 0.0,
+        "execution_time": 0.3711564540863037,
+        "details": {
+          "stdout": "IMPORT_ERROR: No module named 'torch'\n",
+          "stderr": "",
+          "return_code": 0
+        },
+        "error": null
+      },
+      {
+        "name": "syntax_check",
+        "generation": "Gen1",
+        "passed": true,
+        "score": 1.0,
+        "execution_time": 0.6941137313842773,
+        "details": {
+          "files_checked": 119,
+          "syntax_errors": []
+        },
+        "error": null
+      },
+      {
+        "name": "basic_functionality",
+        "generation": "Gen1",
+        "passed": false,
+        "score": 0.0,
+        "execution_time": 0.029425621032714844,
+        "details": {
+          "stdout": "\u2717 Import failed: No module named 'torch'\n",
+          "stderr": "",
+          "return_code": 1
+        },
+        "error": null
+      },
+      {
+        "name": "basic_tests",
+        "generation": "Gen1",
+        "passed": false,
+        "score": 0.5,
+        "execution_time": 0.0491185188293457,
+        "details": {
+          "message": "Tests exist but could not be executed"
+        },
+        "error": null
+      }
+    ]
+  }
+}
